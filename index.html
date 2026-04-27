@@ -136,6 +136,63 @@
   .th-footer{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ccc;font-size:6.5pt;color:#666;text-align:center;line-height:1.4}
   .th-cut-line{text-align:center;font-size:7pt;color:#888;padding:2mm 0;letter-spacing:1px;font-family:'IBM Plex Mono',monospace}
 
+  /* ── LOGIN SCREEN ── */
+  #loginScreen{
+    position:fixed;inset:0;background:#0f1124;
+    display:flex;align-items:center;justify-content:center;
+    z-index:9999;font-family:'IBM Plex Sans',sans-serif;
+  }
+  .login-box{
+    background:#1a1a2e;border:1px solid rgba(255,255,255,.12);
+    border-radius:12px;padding:36px 40px;width:100%;max-width:420px;
+    box-shadow:0 20px 60px rgba(0,0,0,.5);
+  }
+  .login-flag{height:5px;background:linear-gradient(to right,#009c3b 33%,#ffdf00 33% 66%,#002776 66%);border-radius:4px 4px 0 0;margin:-36px -40px 28px;border-radius:12px 12px 0 0;}
+  .login-logo{text-align:center;margin-bottom:24px;}
+  .login-logo .icon{font-size:36px;display:block;margin-bottom:8px;}
+  .login-logo h1{font-family:'IBM Plex Mono',monospace;font-size:14px;color:white;font-weight:700;letter-spacing:.5px;}
+  .login-logo p{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;}
+  .login-field{margin-bottom:16px;}
+  .login-field label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px;}
+  .login-field input{
+    width:100%;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);
+    border-radius:6px;padding:10px 14px;font-size:14px;
+    font-family:'IBM Plex Sans',sans-serif;color:white;outline:none;transition:border-color .15s;
+  }
+  .login-field input:focus{border-color:#00873d;background:rgba(255,255,255,.1);}
+  .login-field input.lerror{border-color:#dc2626;}
+  .login-counter-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
+  .login-btn{
+    width:100%;padding:12px;background:#00873d;color:white;border:none;border-radius:6px;
+    font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;
+    margin-top:8px;transition:background .15s;
+  }
+  .login-btn:hover{background:#006d32;}
+  .login-err{color:#f87171;font-size:12px;text-align:center;margin-top:10px;display:none;}
+  .login-err.show{display:block;}
+  .login-disclaimer{
+    margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);
+    font-size:10px;color:rgba(255,255,255,.3);text-align:center;line-height:1.6;
+  }
+  .login-disclaimer strong{color:rgba(255,255,255,.5);}
+
+  /* ── SESSION BAR ── */
+  .session-bar{
+    background:#0f1124;color:rgba(255,255,255,.6);
+    font-size:11px;padding:6px 24px;
+    display:flex;align-items:center;justify-content:space-between;
+    font-family:'IBM Plex Mono',monospace;flex-wrap:wrap;gap:4px;
+  }
+  .session-bar .sop{color:#86efac;font-weight:700;}
+  .session-bar .snum{color:#fde68a;}
+
+  /* ── COUNTER EDIT ── */
+  .counter-edit-wrap{display:flex;align-items:center;gap:6px;margin-bottom:10px;}
+  .counter-edit-wrap label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);white-space:nowrap;}
+  .counter-edit-wrap input{width:80px;border:1.5px solid var(--border);border-radius:6px;padding:6px 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--green);text-align:center;outline:none;}
+  .counter-edit-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,61,.1);}
+  .counter-edit-wrap .btn-apply{padding:6px 12px;font-size:12px;}
+
   .a4-sheet{font-family:'IBM Plex Mono',monospace}
   .a4-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm;width:190mm}
   .a4-ticket{border:1px dashed #aaa;font-size:8.5pt;padding:4mm;page-break-inside:avoid;break-inside:avoid;line-height:1.5}
@@ -168,6 +225,41 @@
 </style>
 </head>
 <body>
+
+<!-- ══ LOGIN SCREEN ══ -->
+<div id="loginScreen">
+  <div class="login-box">
+    <div class="login-flag"></div>
+    <div class="login-logo">
+      <span class="icon">🗳️</span>
+      <h1>Fechamento do Cadastro Eleitoral 2026</h1>
+      <p>Acesso restrito ao operador autorizado</p>
+    </div>
+    <div class="login-field">
+      <label>Senha de Acesso <span style="font-size:9px;color:rgba(255,255,255,.3);font-weight:400;text-transform:none;letter-spacing:0;">— protegida por SHA-256</span></label>
+      <input type="password" id="lSenha" placeholder="••••••" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
+    </div>
+    <button class="login-btn" onclick="doLogin()">Entrar →</button>
+    <div class="login-err" id="loginErr"></div>
+    <div class="login-disclaimer">
+      <strong>⚠ Projeto pessoal — sem vínculo com o TRE-PI</strong><br>
+      Desenvolvido por Bernardo Borges Silva · Uso exclusivamente pessoal
+    </div>
+  </div>
+</div>
+
+<!-- ══ SESSION BAR ══ -->
+<div class="session-bar no-print" id="sessionBar" style="display:none;">
+  <span id="sessionTime"></span>
+  <span style="display:flex;align-items:center;gap:8px;">
+    <span style="color:rgba(255,255,255,.5);">Senha inicial:</span>
+    <input type="number" id="sessionCounterInput" min="1" max="999" value="1"
+      style="width:60px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:2px 8px;color:#fde68a;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;text-align:center;outline:none;"
+      onchange="aplicarContador()" title="Defina o número inicial do contador">
+    <button onclick="aplicarContador()" style="background:rgba(0,135,61,.4);border:1px solid rgba(0,135,61,.6);color:#86efac;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit;">Aplicar</button>
+  </span>
+  <button onclick="encerrarSessao()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);padding:3px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit;">Encerrar sessão</button>
+</div>
 
 <header>
   <div class="hflag"></div>
@@ -406,15 +498,23 @@
   line-height:1.6; border-top:3px solid #00873d;
   font-family:'IBM Plex Sans',sans-serif;
 ">
-  <span style="color:rgba(255,255,255,0.85);font-weight:600;">⚠ Projeto pessoal</span>
-  &nbsp;·&nbsp;
-  Este sistema foi desenvolvido como projeto pessoal para facilitar o trabalho no período de fechamento do cadastro eleitoral.
-  Apesar de utilizar informações do <strong style="color:rgba(255,255,255,0.75);">TRE-PI</strong>, este aplicativo
-  <strong style="color:rgba(255,255,255,0.75);">não possui qualquer vínculo oficial com o Tribunal Regional Eleitoral do Piauí</strong>.
-  &nbsp;·&nbsp;
-  Desenvolvido por <span style="color:rgba(255,255,255,0.85);font-weight:600;">Bernardo Borges Silva</span> com o auxílio do
-  <span style="color:#a78bfa;font-weight:600;">Claude (Anthropic)</span>
-  &nbsp;✦
+  <div style="margin-bottom:6px;">
+    <span style="color:#fbbf24;font-weight:700;font-size:12px;">⚠ AVISO — PROJETO DE USO PESSOAL</span>
+  </div>
+  <div style="max-width:720px;margin:0 auto;line-height:1.8;">
+    Este sistema foi desenvolvido por
+    <strong style="color:rgba(255,255,255,.85);">Bernardo Borges Silva</strong>
+    como ferramenta de uso estritamente pessoal para auxiliar nas atividades do período de fechamento do cadastro eleitoral 2026.
+    <br>
+    <strong style="color:rgba(255,255,255,.75);">Este aplicativo não possui qualquer vínculo, aprovação, patrocínio ou relação oficial
+    com o Tribunal Regional Eleitoral do Piauí (TRE-PI)</strong>,
+    com o Tribunal Superior Eleitoral (TSE) ou com qualquer órgão público.
+    As informações sobre zonas eleitorais utilizadas são de domínio público.
+    Os dados inseridos durante o uso <strong style="color:rgba(255,255,255,.75);">não são transmitidos a nenhum servidor</strong> —
+    permanecem exclusivamente na memória local do navegador e são descartados ao encerrar a sessão.
+    <br>
+    Desenvolvido com o auxílio do <span style="color:#a78bfa;font-weight:600;">Claude — Anthropic</span> &nbsp;✦
+  </div>
 </footer>
 
 <div class="a4-sheet" id="a4Sheet"><div class="a4-grid" id="a4Grid"></div></div>
@@ -423,9 +523,83 @@
 <div class="toast" id="toast"></div>
 
 <script>
+/* ══ CONFIG ══ */
+// Senha protegida por SHA-256. Para trocar a senha, substitua o hash abaixo.
+// Gere um novo hash em: https://emn178.github.io/online-tools/sha256.html
+const ACCESS_HASH = 'a01ef541fe2f6b26d48bab7b05ff08124ddbed6632bc8f9b3ce4cdbb2d2681f5';
+
+async function hashSenha(str){
+  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+  return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
+}
+
+/* ══ STATE ══ */
 let counter=1,logData=[],currentDocType='CPF',selectedZona=null,lastSenha=null;
 const todayStr=new Date().toISOString().split('T')[0];
 document.getElementById('fData').value=todayStr;
+
+/* ══ SESSION CLOCK ══ */
+function startClock(){
+  setInterval(()=>{
+    const now=new Date();
+    document.getElementById('sessionTime').textContent=
+      now.toLocaleDateString('pt-BR')+' '+now.toLocaleTimeString('pt-BR');
+  },1000);
+}
+
+/* ══ LOGIN ══ */
+async function doLogin(){
+  const senha=document.getElementById('lSenha').value;
+  const err=document.getElementById('loginErr');
+  const btn=document.querySelector('.login-btn');
+
+  document.getElementById('lSenha').classList.remove('lerror');
+  err.classList.remove('show');
+
+  if(!senha){
+    document.getElementById('lSenha').classList.add('lerror');
+    err.textContent='Informe a senha de acesso.';
+    err.classList.add('show');
+    return;
+  }
+
+  btn.textContent='Verificando...';
+  btn.disabled=true;
+
+  const hash=await hashSenha(senha);
+
+  btn.textContent='Entrar →';
+  btn.disabled=false;
+
+  if(hash!==ACCESS_HASH){
+    document.getElementById('lSenha').classList.add('lerror');
+    document.getElementById('lSenha').value='';
+    err.textContent='Senha incorreta.';
+    err.classList.add('show');
+    return;
+  }
+
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('sessionBar').style.display='flex';
+  startClock();
+  updatePreview();
+}
+
+function aplicarContador(){
+  if(logData.length>0){
+    if(!confirm('Já há '+logData.length+' senha(s) emitida(s). Alterar o contador agora pode gerar numeração duplicada. Confirma?'))return;
+  }
+  const val=parseInt(document.getElementById('sessionCounterInput').value)||1;
+  counter=Math.max(1,Math.min(999,val));
+  document.getElementById('headerCounter').textContent=pad(counter);
+  updatePreview();
+  showToast('✓ Contador definido em '+pad(counter));
+}
+
+function encerrarSessao(){
+  if(logData.length>0&&!confirm('Há '+logData.length+' senha(s) emitida(s) nesta sessão. Deseja realmente encerrar? Os dados serão perdidos.'))return;
+  location.reload();
+}
 
 function pad(n){return String(n).padStart(3,'0')}
 function fmtDate(s){if(!s)return'—';const[y,m,d]=s.split('-');return`${d}/${m}/${y}`}
