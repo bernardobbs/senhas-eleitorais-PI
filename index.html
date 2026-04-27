@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Fechamento do Cadastro Eleitoral 2026 — TRE/PI</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+  :root{--green:#00873d;--green-light:#e6f4ec;--gold:#f5a623;--dark:#1a1a2e;--gray:#6b7280;--border:#d1d5db;--bg:#f0f2f5;--white:#fff;--red:#dc2626}
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100vh;color:var(--dark)}
+  header{background:var(--green);color:white;display:flex;align-items:stretch}
+  .hflag{width:8px;background:linear-gradient(to bottom,#009c3b 33%,#ffdf00 33% 66%,#002776 66%);flex-shrink:0}
+  .hcontent{padding:14px 24px;flex:1}
+  .htop{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:3px}
+  .htitle{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700}
+  .hsub{font-size:11px;opacity:.75;margin-top:2px}
+  .hbadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:6px 14px;font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:700;align-self:center;margin:14px 20px;text-align:center;min-width:80px}
+  .hbadge small{display:block;font-size:9px;letter-spacing:1px;opacity:.7;font-weight:400}
+  .page{max-width:1100px;margin:0 auto;padding:20px 16px}
+  .content-grid{display:grid;grid-template-columns:1fr 330px;gap:20px;align-items:start}
+  .card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden}
+  .card-head{background:var(--dark);color:white;padding:11px 20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+  .card-head .dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+  .card-body{padding:20px}
+  .alert-box{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid var(--gold);border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#92400e;line-height:1.5}
+  .alert-box strong{color:#78350f}
+  .form-row{margin-bottom:14px}
+  .form-row label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
+  .form-row label .req{color:var(--red);margin-left:2px}
+  .form-row input,.form-row select{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:9px 13px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;color:var(--dark);background:white;transition:border-color .15s;outline:none;appearance:none;-webkit-appearance:none}
+  .select-wrap{position:relative}
+  .select-wrap::after{content:'▾';position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;font-size:14px}
+  .form-row input:focus,.form-row select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,61,.1)}
+  .form-row input.error,.form-row select.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+  .zone-chip{display:none;align-items:center;gap:8px;background:var(--green-light);border:1.5px solid var(--green);border-radius:6px;padding:8px 12px;margin-top:8px}
+  .zone-chip.visible{display:flex}
+  .zone-chip-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+  .zone-chip-text{font-size:12px;font-weight:600;color:#166534}
+  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+  .doc-type-row{display:flex;gap:6px;margin-bottom:7px}
+  .doc-type-btn{flex:1;padding:7px 6px;border:1.5px solid var(--border);border-radius:6px;background:white;cursor:pointer;font-size:12px;font-weight:500;color:var(--gray);transition:all .15s;font-family:'IBM Plex Sans',sans-serif}
+  .doc-type-btn.active{border-color:var(--green);background:var(--green-light);color:var(--green);font-weight:600}
+  .btn-group{display:flex;gap:10px;margin-top:20px}
+  .btn{padding:11px 20px;border-radius:6px;border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;transition:all .15s;display:flex;align-items:center;gap:6px}
+  .btn-primary{background:var(--green);color:white;flex:1;justify-content:center}
+  .btn-primary:hover{background:#006d32}
+  .btn-secondary{background:white;color:var(--dark);border:1.5px solid var(--border)}
+  .btn-secondary:hover{background:var(--bg)}
+  .btn:disabled{opacity:.4;cursor:not-allowed}
+  .preview-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
+  .ticket{background:white;border:1px dashed var(--border);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;overflow:hidden;box-shadow:2px 2px 8px rgba(0,0,0,.06)}
+  .ticket-via{padding:12px 14px;line-height:1.6}
+  .ticket-via.via-cartorio{background:#fafafa;border-top:2px dashed var(--border)}
+  .ticket-header{text-align:center;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid #e5e7eb}
+  .ticket-org{font-size:8px;letter-spacing:.5px;text-transform:uppercase;color:var(--gray)}
+  .ticket-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+  .ticket-zona{font-size:8px;color:var(--gray);margin-top:1px}
+  .ticket-via-label{font-size:8px;background:var(--dark);color:white;padding:2px 6px;border-radius:2px;display:inline-block;margin-top:3px;letter-spacing:1px}
+  .ticket-num{font-size:30px;font-weight:700;text-align:center;letter-spacing:-1px;margin:8px 0;color:var(--green)}
+  .ticket-field{font-size:9px;margin-bottom:3px;display:flex;gap:4px}
+  .ticket-field .lbl{color:var(--gray);white-space:nowrap;min-width:55px}
+  .ticket-field .val{font-weight:600;word-break:break-all}
+  .ticket-footer{margin-top:8px;padding-top:7px;border-top:1px solid #e5e7eb;font-size:8px;color:var(--gray);text-align:center;line-height:1.4}
+  .ticket-cut-line{text-align:center;font-size:10px;color:#9ca3af;background:var(--bg);padding:3px;letter-spacing:4px}
+  .log-section{margin-top:20px}
+  .log-table-wrap{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;font-size:12px}
+  thead th{background:var(--dark);color:white;padding:9px 12px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+  tbody tr:nth-child(even){background:var(--bg)}
+  tbody tr:hover{background:var(--green-light)}
+  tbody td{padding:8px 12px;border-bottom:1px solid var(--border)}
+  tbody td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--green);font-size:14px}
+  .empty-row td{text-align:center;color:var(--gray);font-style:italic;padding:24px}
+  .table-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+  .counter-badge{background:var(--green);color:white;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px}
+  .table-btns{display:flex;gap:8px;flex-wrap:wrap}
+  .toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:white;padding:11px 18px;border-radius:8px;font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999;border-left:4px solid var(--green)}
+  .toast.show{opacity:1;transform:translateY(0)}
+  .a4-sheet{display:none}
+  .relacao-print{display:none}
+  .thermal-area{display:none}
+
+  @media print{
+    body,html{background:white !important}
+    header,.content-grid>div:first-child,.log-section,.preview-panel .preview-label,.preview-panel>div:last-child,.no-print{display:none !important}
+    .page{padding:0 !important;max-width:none !important}
+    .content-grid{display:block !important}
+    .preview-panel{display:block !important}
+
+    /* THERMAL: show only thermalArea */
+    body.print-thermal .thermal-area{display:block !important}
+    body.print-thermal .ticket-preview-wrap,
+    body.print-thermal .a4-sheet,
+    body.print-thermal .relacao-print{display:none !important}
+    /* page break between vias = autocut signal */
+    body.print-thermal .th-via-eleitor{page-break-after:always;break-after:page}
+    body.print-thermal .th-via-cartorio{page-break-after:auto;break-after:auto}
+
+    body.print-a4 .ticket-preview-wrap,body.print-a4 .relacao-print,body.print-a4 .thermal-area{display:none !important}
+    body.print-a4 .a4-sheet{display:block !important}
+    body.print-relacao .ticket-preview-wrap,body.print-relacao .a4-sheet,body.print-relacao .thermal-area{display:none !important}
+    body.print-relacao .relacao-print{display:block !important}
+    @page{size:80mm auto;margin:3mm}
+    @page a4page{size:A4 portrait;margin:10mm}
+    @page relpage{size:A4 portrait;margin:14mm}
+    body.print-a4 .a4-sheet{page:a4page}
+    body.print-relacao .relacao-print{page:relpage}
+  }
+
+  /* Thermal ticket styles */
+  .thermal-area{font-family:'IBM Plex Mono',monospace;font-size:10pt;width:72mm}
+  .th-via{padding:2mm 0;line-height:1.55}
+  .th-header{text-align:center;border-bottom:1px solid #999;padding-bottom:2.5mm;margin-bottom:2.5mm}
+  .th-org{font-size:7pt;text-transform:uppercase;letter-spacing:.3px;color:#444}
+  .th-title{font-size:8.5pt;font-weight:700;text-transform:uppercase;margin-top:1mm}
+  .th-zona{font-size:7pt;color:#555;margin-top:.5mm}
+  .th-via-lbl{display:inline-block;background:#000;color:#fff;font-size:6.5pt;padding:1.5px 7px;border-radius:2px;margin-top:1.5mm;letter-spacing:.5px}
+  .th-num{font-size:28pt;font-weight:700;text-align:center;margin:2.5mm 0 2mm;letter-spacing:-1px}
+  .th-field{font-size:8pt;margin-bottom:1.5mm;display:flex;gap:2mm;line-height:1.4}
+  .th-l{color:#555;white-space:nowrap;min-width:14mm;font-size:7.5pt}
+  .th-v{font-weight:700;word-break:break-all}
+  .th-footer{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ccc;font-size:6.5pt;color:#666;text-align:center;line-height:1.4}
+
+  .a4-sheet{font-family:'IBM Plex Mono',monospace}
+  .a4-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm;width:190mm}
+  .a4-ticket{border:1px dashed #aaa;font-size:8.5pt;padding:4mm;page-break-inside:avoid;break-inside:avoid;line-height:1.5}
+  .a4-ticket .t-head{text-align:center;padding-bottom:2.5mm;border-bottom:1px solid #ccc;margin-bottom:2.5mm}
+  .a4-ticket .t-org{font-size:6.5pt;text-transform:uppercase;color:#666}
+  .a4-ticket .t-title{font-size:8pt;font-weight:700;text-transform:uppercase;margin-top:1mm}
+  .a4-ticket .t-zona{font-size:6.5pt;color:#555;margin-top:.5mm}
+  .a4-ticket .t-via-lbl{display:inline-block;background:#1a1a2e;color:white;font-size:6pt;padding:1px 5px;border-radius:2px;margin-top:1mm}
+  .a4-ticket .t-num{font-size:22pt;font-weight:700;text-align:center;color:#00873d;margin:1.5mm 0;letter-spacing:-1px}
+  .a4-ticket .t-field{font-size:7.5pt;margin-bottom:1.5mm;display:flex;gap:2mm}
+  .a4-ticket .t-field .l{color:#555;white-space:nowrap;min-width:13mm}
+  .a4-ticket .t-field .v{font-weight:600;word-break:break-all}
+  .a4-ticket .t-foot{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ddd;font-size:6pt;color:#777;text-align:center;line-height:1.4}
+  .a4-ticket .t-cut{text-align:center;font-size:7pt;color:#bbb;letter-spacing:2px;margin:1.5mm 0}
+  .relacao-print{font-family:'IBM Plex Sans',sans-serif;font-size:9pt;color:#111}
+  .rel-header{text-align:center;margin-bottom:6mm}
+  .rel-header h1{font-size:12pt;font-weight:700;text-transform:uppercase}
+  .rel-header h2{font-size:10pt;font-weight:600;margin-top:1mm}
+  .rel-header p{font-size:8pt;color:#555;margin-top:1.5mm;line-height:1.5}
+  .rel-header .zona-info{font-size:9pt;font-weight:700;margin-top:3mm;border:1.5px solid #1a1a2e;display:inline-block;padding:3px 14px;border-radius:3px}
+  .rel-table{width:100%;border-collapse:collapse;margin-top:4mm}
+  .rel-table th{background:#1a1a2e;color:white;padding:4px 8px;font-size:8pt;text-align:left}
+  .rel-table td{padding:4px 8px;border-bottom:1px solid #ddd;font-size:8pt}
+  .rel-table tr:nth-child(even) td{background:#f5f5f5}
+  .rel-table td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#00873d}
+  .rel-footer{margin-top:6mm;font-size:8pt;color:#555;border-top:1px solid #ccc;padding-top:3mm;display:flex;justify-content:space-between}
+  .rel-sign{margin-top:18mm;display:flex;justify-content:center;gap:30mm}
+  .rel-sign-line{text-align:center;font-size:8pt}
+  .rel-sign-line .line{border-top:1px solid #333;width:55mm;margin-bottom:2mm}
+</style>
+</head>
+<body>
+
+<header>
+  <div class="hflag"></div>
+  <div class="hcontent">
+    <div class="htop">Tribunal Regional Eleitoral do Piauí</div>
+    <div class="htitle">Fechamento do Cadastro Eleitoral 2026</div>
+    <div class="hsub">Port. Conj. nº 9/2026 (alt. nº 13/2026) · Art. 3º, §2º · Atendimento Diferido</div>
+  </div>
+  <div class="hbadge"><small>PRÓXIMA</small><span id="headerCounter">001</span></div>
+</header>
+
+<div class="page">
+  <div class="content-grid">
+
+    <div>
+      <div class="card">
+        <div class="card-head"><div class="dot"></div>Cadastro do Eleitor — Emissão de Senha</div>
+        <div class="card-body">
+          <div class="alert-box">
+            <strong>⚠ Port. Conj. 13/2026:</strong> Dias <strong>04, 05 e 06/05/2026</strong> até <strong>19h</strong>. Senhas a partir das <strong>13h</strong>. Dados <strong>obrigatórios</strong>.
+          </div>
+
+          <div class="form-row">
+            <label>Zona / CAE <span class="req">*</span></label>
+            <div class="select-wrap">
+              <select id="fZona" onchange="onZonaChange()">
+                <option value="">— Selecione a Zona Eleitoral ou CAE —</option>
+                <optgroup label="── Central de Atendimento ao Eleitor (CAE) ──">
+                  <option value="CAE|CAMPO MAIOR">CAE — CAMPO MAIOR</option>
+                  <option value="CAE|PARNAÍBA">CAE — PARNAÍBA</option>
+                  <option value="CAE|PICOS">CAE — PICOS</option>
+                  <option value="CAE|OEIRAS">CAE — OEIRAS</option>
+                  <option value="CAE|TERESINA">CAE — TERESINA</option>
+                </optgroup>
+                <optgroup label="── Zonas Eleitorais ──">
+                  <option value="1ª ZONA ELEITORAL|TERESINA">1ª ZONA ELEITORAL — TERESINA</option>
+                  <option value="2ª ZONA ELEITORAL|TERESINA">2ª ZONA ELEITORAL — TERESINA</option>
+                  <option value="3ª ZONA ELEITORAL|PARNAÍBA">3ª ZONA ELEITORAL — PARNAÍBA</option>
+                  <option value="4ª ZONA ELEITORAL|PARNAÍBA">4ª ZONA ELEITORAL — PARNAÍBA</option>
+                  <option value="5ª ZONA ELEITORAL|OEIRAS">5ª ZONA ELEITORAL — OEIRAS</option>
+                  <option value="6ª ZONA ELEITORAL|BARRAS">6ª ZONA ELEITORAL — BARRAS</option>
+                  <option value="7ª ZONA ELEITORAL|CAMPO MAIOR">7ª ZONA ELEITORAL — CAMPO MAIOR</option>
+                  <option value="8ª ZONA ELEITORAL|AMARANTE">8ª ZONA ELEITORAL — AMARANTE</option>
+                  <option value="9ª ZONA ELEITORAL|FLORIANO">9ª ZONA ELEITORAL — FLORIANO</option>
+                  <option value="10ª ZONA ELEITORAL|PICOS">10ª ZONA ELEITORAL — PICOS</option>
+                  <option value="11ª ZONA ELEITORAL|PIRIPIRI">11ª ZONA ELEITORAL — PIRIPIRI</option>
+                  <option value="12ª ZONA ELEITORAL|PEDRO II">12ª ZONA ELEITORAL — PEDRO II</option>
+                  <option value="13ª ZONA ELEITORAL|SÃO RAIMUNDO NONATO">13ª ZONA ELEITORAL — SÃO RAIMUNDO NONATO</option>
+                  <option value="14ª ZONA ELEITORAL|URUÇUÍ">14ª ZONA ELEITORAL — URUÇUÍ</option>
+                  <option value="15ª ZONA ELEITORAL|BOM JESUS">15ª ZONA ELEITORAL — BOM JESUS</option>
+                  <option value="16ª ZONA ELEITORAL|UNIÃO">16ª ZONA ELEITORAL — UNIÃO</option>
+                  <option value="17ª ZONA ELEITORAL|MIGUEL ALVES">17ª ZONA ELEITORAL — MIGUEL ALVES</option>
+                  <option value="18ª ZONA ELEITORAL|VALENÇA DO PIAUÍ">18ª ZONA ELEITORAL — VALENÇA DO PIAUÍ</option>
+                  <option value="19ª ZONA ELEITORAL|JAICÓS">19ª ZONA ELEITORAL — JAICÓS</option>
+                  <option value="20ª ZONA ELEITORAL|SÃO JOÃO DO PIAUÍ">20ª ZONA ELEITORAL — SÃO JOÃO DO PIAUÍ</option>
+                  <option value="21ª ZONA ELEITORAL|PIRACURUCA">21ª ZONA ELEITORAL — PIRACURUCA</option>
+                  <option value="22ª ZONA ELEITORAL|CORRENTE">22ª ZONA ELEITORAL — CORRENTE</option>
+                  <option value="24ª ZONA ELEITORAL|JOSÉ DE FREITAS">24ª ZONA ELEITORAL — JOSÉ DE FREITAS</option>
+                  <option value="25ª ZONA ELEITORAL|JERUMENHA">25ª ZONA ELEITORAL — JERUMENHA</option>
+                  <option value="26ª ZONA ELEITORAL|PARNAGUÁ">26ª ZONA ELEITORAL — PARNAGUÁ</option>
+                  <option value="27ª ZONA ELEITORAL|LUZILÂNDIA">27ª ZONA ELEITORAL — LUZILÂNDIA</option>
+                  <option value="28ª ZONA ELEITORAL|PICOS">28ª ZONA ELEITORAL — PICOS</option>
+                  <option value="29ª ZONA ELEITORAL|PIO IX">29ª ZONA ELEITORAL — PIO IX</option>
+                  <option value="30ª ZONA ELEITORAL|SÃO PEDRO DO PIAUÍ">30ª ZONA ELEITORAL — SÃO PEDRO DO PIAUÍ</option>
+                  <option value="32ª ZONA ELEITORAL|ALTOS">32ª ZONA ELEITORAL — ALTOS</option>
+                  <option value="33ª ZONA ELEITORAL|BURITI DOS LOPES">33ª ZONA ELEITORAL — BURITI DOS LOPES</option>
+                  <option value="34ª ZONA ELEITORAL|CASTELO DO PIAUÍ">34ª ZONA ELEITORAL — CASTELO DO PIAUÍ</option>
+                  <option value="35ª ZONA ELEITORAL|GILBUÉS">35ª ZONA ELEITORAL — GILBUÉS</option>
+                  <option value="36ª ZONA ELEITORAL|CANTO DO BURITI">36ª ZONA ELEITORAL — CANTO DO BURITI</option>
+                  <option value="37ª ZONA ELEITORAL|SIMPLÍCIO MENDES">37ª ZONA ELEITORAL — SIMPLÍCIO MENDES</option>
+                  <option value="38ª ZONA ELEITORAL|PAULISTANA">38ª ZONA ELEITORAL — PAULISTANA</option>
+                  <option value="39ª ZONA ELEITORAL|SÃO MIGUEL DO TAPUIO">39ª ZONA ELEITORAL — SÃO MIGUEL DO TAPUIO</option>
+                  <option value="40ª ZONA ELEITORAL|FRONTEIRAS">40ª ZONA ELEITORAL — FRONTEIRAS</option>
+                  <option value="41ª ZONA ELEITORAL|ESPERANTINA">41ª ZONA ELEITORAL — ESPERANTINA</option>
+                  <option value="43ª ZONA ELEITORAL|REGENERAÇÃO">43ª ZONA ELEITORAL — REGENERAÇÃO</option>
+                  <option value="44ª ZONA ELEITORAL|RIBEIRO GONÇALVES">44ª ZONA ELEITORAL — RIBEIRO GONÇALVES</option>
+                  <option value="45ª ZONA ELEITORAL|BATALHA">45ª ZONA ELEITORAL — BATALHA</option>
+                  <option value="46ª ZONA ELEITORAL|GUADALUPE">46ª ZONA ELEITORAL — GUADALUPE</option>
+                  <option value="47ª ZONA ELEITORAL|ALTOS">47ª ZONA ELEITORAL — ALTOS</option>
+                  <option value="48ª ZONA ELEITORAL|ELESBÃO VELOSO">48ª ZONA ELEITORAL — ELESBÃO VELOSO</option>
+                  <option value="49ª ZONA ELEITORAL|PORTO">49ª ZONA ELEITORAL — PORTO</option>
+                  <option value="52ª ZONA ELEITORAL|ÁGUA BRANCA">52ª ZONA ELEITORAL — ÁGUA BRANCA</option>
+                  <option value="53ª ZONA ELEITORAL|COCAL">53ª ZONA ELEITORAL — COCAL</option>
+                  <option value="54ª ZONA ELEITORAL|DEMERVAL LOBÃO">54ª ZONA ELEITORAL — DEMERVAL LOBÃO</option>
+                  <option value="56ª ZONA ELEITORAL|SIMÕES">56ª ZONA ELEITORAL — SIMÕES</option>
+                  <option value="57ª ZONA ELEITORAL|ITAINÓPOLIS">57ª ZONA ELEITORAL — ITAINÓPOLIS</option>
+                  <option value="58ª ZONA ELEITORAL|MONSENHOR GIL">58ª ZONA ELEITORAL — MONSENHOR GIL</option>
+                  <option value="59ª ZONA ELEITORAL|CRISTINO CASTRO">59ª ZONA ELEITORAL — CRISTINO CASTRO</option>
+                  <option value="61ª ZONA ELEITORAL|FLORIANO">61ª ZONA ELEITORAL — FLORIANO</option>
+                  <option value="62ª ZONA ELEITORAL|PICOS">62ª ZONA ELEITORAL — PICOS</option>
+                  <option value="63ª ZONA ELEITORAL|TERESINA">63ª ZONA ELEITORAL — TERESINA</option>
+                  <option value="64ª ZONA ELEITORAL|INHUMA">64ª ZONA ELEITORAL — INHUMA</option>
+                  <option value="67ª ZONA ELEITORAL|MANOEL EMÍDIO">67ª ZONA ELEITORAL — MANOEL EMÍDIO</option>
+                  <option value="68ª ZONA ELEITORAL|PADRE MARCOS">68ª ZONA ELEITORAL — PADRE MARCOS</option>
+                  <option value="69ª ZONA ELEITORAL|SÃO JOÃO DO PIAUÍ">69ª ZONA ELEITORAL — SÃO JOÃO DO PIAUÍ</option>
+                  <option value="71ª ZONA ELEITORAL|CAPITÃO DE CAMPOS">71ª ZONA ELEITORAL — CAPITÃO DE CAMPOS</option>
+                  <option value="72ª ZONA ELEITORAL|ITAUEIRA">72ª ZONA ELEITORAL — ITAUEIRA</option>
+                  <option value="74ª ZONA ELEITORAL|BARRO DURO">74ª ZONA ELEITORAL — BARRO DURO</option>
+                  <option value="79ª ZONA ELEITORAL|CARACOL">79ª ZONA ELEITORAL — CARACOL</option>
+                  <option value="80ª ZONA ELEITORAL|MATIAS OLÍMPIO">80ª ZONA ELEITORAL — MATIAS OLÍMPIO</option>
+                  <option value="88ª ZONA ELEITORAL|AVELINO LOPES">88ª ZONA ELEITORAL — AVELINO LOPES</option>
+                  <option value="89ª ZONA ELEITORAL|VALENÇA DO PIAUÍ">89ª ZONA ELEITORAL — VALENÇA DO PIAUÍ</option>
+                  <option value="90ª ZONA ELEITORAL|SIMPLÍCIO MENDES">90ª ZONA ELEITORAL — SIMPLÍCIO MENDES</option>
+                  <option value="91ª ZONA ELEITORAL|LUIZ CORREIA">91ª ZONA ELEITORAL — LUIZ CORREIA</option>
+                  <option value="94ª ZONA ELEITORAL|OEIRAS">94ª ZONA ELEITORAL — OEIRAS</option>
+                  <option value="95ª ZONA ELEITORAL|SÃO RAIMUNDO NONATO">95ª ZONA ELEITORAL — SÃO RAIMUNDO NONATO</option>
+                  <option value="96ª ZONA ELEITORAL|CAMPO MAIOR">96ª ZONA ELEITORAL — CAMPO MAIOR</option>
+                  <option value="97ª ZONA ELEITORAL|TERESINA">97ª ZONA ELEITORAL — TERESINA</option>
+                  <option value="98ª ZONA ELEITORAL|TERESINA">98ª ZONA ELEITORAL — TERESINA</option>
+                </optgroup>
+              </select>
+            </div>
+            <div class="zone-chip" id="zoneChip">
+              <div class="zone-chip-dot"></div>
+              <span class="zone-chip-text" id="zoneChipText"></span>
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Nome Completo <span class="req">*</span></label>
+            <input type="text" id="fNome" placeholder="Nome completo do(a) eleitor(a)" autocomplete="off">
+          </div>
+
+          <div class="form-grid-2">
+            <div class="form-row">
+              <label>Título de Eleitor <span class="req" title="Obrigatório: título e/ou documento">*</span></label>
+              <input type="text" id="fTitulo" placeholder="0000 0000 0000" maxlength="14"
+                oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{4})(\d{4})(\d{4})/,'$1 $2 $3')">
+            </div>
+            <div class="form-row">
+              <label>Data de Emissão</label>
+              <input type="date" id="fData" readonly style="cursor:default;background:#f9fafb;">
+            </div>
+          </div>
+
+          <div class="form-row">
+            <label>Documento de Identificação <span style="font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0">(e/ou título acima)</span></label>
+            <div class="doc-type-row">
+              <button class="doc-type-btn active" onclick="setDocType('CPF',this)">CPF</button>
+              <button class="doc-type-btn" onclick="setDocType('RG',this)">RG</button>
+              <button class="doc-type-btn" onclick="setDocType('CNH',this)">CNH</button>
+              <button class="doc-type-btn" onclick="setDocType('OUTRO',this)">Outro</button>
+            </div>
+            <input type="text" id="fDoc" placeholder="Número do documento" autocomplete="off">
+          </div>
+
+          <div class="form-row" id="rowOutro" style="display:none;">
+            <label>Especificar Outro Documento</label>
+            <input type="text" id="fOutro" placeholder="Ex: Passaporte, Carteira Funcional...">
+          </div>
+
+          <div class="btn-group">
+            <button class="btn btn-primary" onclick="emitirSenha()">✦ Emitir Senha</button>
+            <button class="btn btn-secondary" onclick="limparForm()">Limpar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="preview-panel">
+      <div class="preview-label no-print">Pré-visualização</div>
+      <div class="ticket-preview-wrap">
+        <div class="ticket">
+          <div class="ticket-via via-eleitor">
+            <div class="ticket-header">
+              <div class="ticket-org">Justiça Eleitoral — TRE/PI</div>
+              <div class="ticket-title">Fechamento do Cadastro 2026</div>
+              <div class="ticket-zona" id="pZonaE">—</div>
+              <div><span class="ticket-via-label">VIA DO ELEITOR</span></div>
+            </div>
+            <div class="ticket-num" id="pNumEleitor">—</div>
+            <div class="ticket-field"><span class="lbl">Emissão:</span><span class="val" id="pDataEleitor">—</span></div>
+            <div class="ticket-footer">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. 9/2026 (alt. 13/2026)</div>
+          </div>
+          <div class="ticket-cut-line">✂ ─ ─ ─ ─ ─ ─ ─ ─</div>
+          <div class="ticket-via via-cartorio">
+            <div class="ticket-header">
+              <div class="ticket-org">Justiça Eleitoral — TRE/PI</div>
+              <div class="ticket-title">Fechamento do Cadastro 2026</div>
+              <div class="ticket-zona" id="pZonaC">—</div>
+              <div><span class="ticket-via-label">VIA DO CARTÓRIO</span></div>
+            </div>
+            <div class="ticket-num" id="pNumCartorio">—</div>
+            <div class="ticket-field"><span class="lbl">Emissão:</span><span class="val" id="pDataCartorio">—</span></div>
+            <div class="ticket-field"><span class="lbl">Nome:</span><span class="val" id="pNome">—</span></div>
+            <div class="ticket-field"><span class="lbl">Título:</span><span class="val" id="pTitulo">—</span></div>
+            <div class="ticket-field"><span class="lbl">CPF/RG:</span><span class="val" id="pDoc">—</span></div>
+            <div class="ticket-field" id="pDocTipoRow" style="display:none;"><span class="lbl">Tipo:</span><span class="val" id="pDocLbl">—</span></div>
+            <div class="ticket-field" id="pOutroRow" style="display:none;"><span class="lbl">Outro:</span><span class="val" id="pOutro">—</span></div>
+            <div class="ticket-footer">Uso interno — Cartório Eleitoral<br>Conservar para controle do atendimento diferido</div>
+          </div>
+        </div>
+      </div>
+      <div class="no-print" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
+        <button class="btn btn-primary" onclick="imprimirTermica()" id="btnImpTermica" disabled style="justify-content:center;">🖨 Imprimir Térmica (última senha)</button>
+        <button class="btn btn-secondary" onclick="reimprimirTermica()" id="btnReimprimir" disabled style="justify-content:center;border-color:#f59e0b;color:#92400e;background:#fffbeb;">↩ Reimprimir Última Senha</button>
+        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray);cursor:pointer;padding:2px 4px;">
+          <input type="checkbox" id="chkAutoPrint" style="width:16px;height:16px;accent-color:var(--green);">
+          Imprimir automaticamente ao emitir
+        </label>
+        <button class="btn btn-secondary" onclick="imprimirA4()" id="btnImpA4" disabled style="justify-content:center;">📄 Imprimir 4 Senhas em A4</button>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="log-section">
+    <div class="card">
+      <div class="card-head"><div class="dot"></div>Registro de Senhas Emitidas — Sessão Atual</div>
+      <div class="card-body" style="padding:16px 20px;">
+        <div class="table-actions">
+          <span class="counter-badge" id="totalBadge">0 senhas emitidas</span>
+          <div class="table-btns">
+            <button class="btn btn-secondary no-print" onclick="imprimirRelacao()" id="btnRelacao" disabled style="font-size:12px;padding:6px 14px;">📋 Relação</button>
+            <button class="btn btn-secondary no-print" onclick="exportarCSV()" style="font-size:12px;padding:6px 14px;">↓ CSV</button>
+          </div>
+        </div>
+        <div class="log-table-wrap">
+          <table>
+            <thead><tr><th>Nº</th><th>Horário</th><th>Nome</th><th>Zona / CAE</th><th>Município</th><th>Título</th><th>Documento</th><th>Emissão</th></tr></thead>
+            <tbody id="logBody"><tr class="empty-row"><td colspan="8">Nenhuma senha emitida nesta sessão</td></tr></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="a4-sheet" id="a4Sheet"><div class="a4-grid" id="a4Grid"></div></div>
+<div class="relacao-print" id="relacaoPrint"></div>
+<div class="thermal-area" id="thermalArea"></div>
+<div class="toast" id="toast"></div>
+
+<script>
+let counter=1,logData=[],currentDocType='CPF',selectedZona=null,lastSenha=null;
+const todayStr=new Date().toISOString().split('T')[0];
+document.getElementById('fData').value=todayStr;
+
+function pad(n){return String(n).padStart(3,'0')}
+function fmtDate(s){if(!s)return'—';const[y,m,d]=s.split('-');return`${d}/${m}/${y}`}
+function nowTime(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000)}
+
+function onZonaChange(){
+  const sel=document.getElementById('fZona');
+  sel.classList.remove('error');
+  if(!sel.value){selectedZona=null;document.getElementById('zoneChip').classList.remove('visible');updatePreview();return}
+  const[zona,cidade]=sel.value.split('|');
+  selectedZona={zona,cidade};
+  document.getElementById('zoneChipText').textContent=`${zona} — ${cidade}`;
+  document.getElementById('zoneChip').classList.add('visible');
+  updatePreview();
+}
+
+function setDocType(tipo,btn){
+  currentDocType=tipo;
+  document.querySelectorAll('.doc-type-btn').forEach(b=>b.classList.remove('active'));
+  btn.classList.add('active');
+  document.getElementById('fDoc').placeholder=tipo==='CPF'?'000.000.000-00':tipo==='RG'?'Ex: 1234567 SSP/PI':tipo==='CNH'?'Número da CNH':'Número do documento';
+  document.getElementById('rowOutro').style.display=tipo==='OUTRO'?'':'none';
+  updatePreview();
+}
+
+function updatePreview(){
+  const z=selectedZona?`${selectedZona.zona} — ${selectedZona.cidade}`:'—';
+  const nome=(document.getElementById('fNome').value.trim()||'—').toUpperCase();
+  const titulo=document.getElementById('fTitulo').value.trim()||'—';
+  const doc=document.getElementById('fDoc').value.trim()||'—';
+  const data=fmtDate(document.getElementById('fData').value)||fmtDate(todayStr);
+  const outro=document.getElementById('fOutro').value.trim()||'—';
+  const num=pad(counter);
+  document.getElementById('pNumEleitor').textContent=num;
+  document.getElementById('pNumCartorio').textContent=num;
+  document.getElementById('pDataEleitor').textContent=data;
+  document.getElementById('pDataCartorio').textContent=data;
+  document.getElementById('pZonaE').textContent=z;
+  document.getElementById('pZonaC').textContent=z;
+  document.getElementById('pNome').textContent=nome;
+  document.getElementById('pTitulo').textContent=titulo;
+  // For CPF/RG show inline; for CNH/OUTRO show type row
+  const isCpfRg = currentDocType==='CPF'||currentDocType==='RG';
+  document.getElementById('pDoc').textContent=doc;
+  document.getElementById('pDocTipoRow').style.display=isCpfRg?'none':'';
+  document.getElementById('pDocLbl').textContent=currentDocType;
+  document.getElementById('headerCounter').textContent=num;
+  document.getElementById('pOutroRow').style.display=currentDocType==='OUTRO'?'':'none';
+  document.getElementById('pOutro').textContent=outro;
+}
+
+['fNome','fTitulo','fDoc','fData','fOutro'].forEach(id=>document.getElementById(id).addEventListener('input',updatePreview));
+// Clear cross-field errors when user types in título or doc
+['fTitulo','fDoc'].forEach(id=>document.getElementById(id).addEventListener('input',function(){
+  if(document.getElementById('fTitulo').value.trim()||document.getElementById('fDoc').value.trim()){
+    document.getElementById('fTitulo').classList.remove('error');
+    document.getElementById('fDoc').classList.remove('error');
+  }
+}));
+
+function emitirSenha(){
+  const zonaSel=document.getElementById('fZona');
+  const nome=document.getElementById('fNome').value.trim();
+  const doc=document.getElementById('fDoc').value.trim();
+  let ok=true;
+  if(!selectedZona){zonaSel.classList.add('error');showToast('⚠ Selecione a Zona ou CAE');ok=false}
+  if(!nome){document.getElementById('fNome').classList.add('error');ok=false}
+  const titulo=document.getElementById('fTitulo').value.trim();
+  if(!titulo&&!doc){
+    document.getElementById('fDoc').classList.add('error');
+    document.getElementById('fTitulo').classList.add('error');
+    showToast('⚠ Informe o Título e/ou um Documento de Identificação');
+    ok=false;
+  }
+  if(!ok)return;
+  const senha={num:pad(counter),nome:nome.toUpperCase(),zona:selectedZona.zona,municipio:selectedZona.cidade,titulo:document.getElementById('fTitulo').value.trim(),doc,tipo:currentDocType,outro:document.getElementById('fOutro').value.trim(),data:document.getElementById('fData').value,horario:nowTime()};
+  lastSenha=senha;
+  logData.push(senha);renderLog();buildA4Sheet();
+  buildThermalArea(senha);
+  document.getElementById('btnImpTermica').disabled=false;
+  document.getElementById('btnReimprimir').disabled=false;
+  document.getElementById('btnImpA4').disabled=false;
+  document.getElementById('btnRelacao').disabled=false;
+  counter++;
+  ['fNome','fTitulo','fDoc','fOutro'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList.remove('error')});
+  document.getElementById('rowOutro').style.display='none';
+  document.querySelectorAll('.doc-type-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  currentDocType='CPF';document.getElementById('fDoc').placeholder='000.000.000-00';
+  document.getElementById('fNome').focus();updatePreview();
+  showToast(`✓ Senha ${senha.num} emitida — ${senha.zona}`);
+  if(document.getElementById('chkAutoPrint').checked){setTimeout(()=>imprimirTermica(),200);};
+}
+
+function renderLog(){
+  document.getElementById('totalBadge').textContent=logData.length+(logData.length===1?' senha emitida':' senhas emitidas');
+  document.getElementById('logBody').innerHTML=[...logData].reverse().map(s=>`<tr><td>${s.num}</td><td>${s.horario}</td><td>${s.nome}</td><td>${s.zona}</td><td>${s.municipio}</td><td>${s.titulo||'—'}</td><td>${s.tipo}: ${s.doc}${s.tipo==='OUTRO'&&s.outro?' ('+s.outro+')':''}</td><td>${fmtDate(s.data)}</td></tr>`).join('');
+}
+
+function viaHTML(s,via){
+  const z=`${s.zona} — ${s.municipio}`;
+  const ol=s.tipo==='OUTRO'&&s.outro?`<div class="t-field"><span class="l">Outro:</span><span class="v">${s.outro}</span></div>`:'';
+  const isC=via==='cartorio';
+  return`<div class="t-head"><div class="t-org">Justiça Eleitoral — TRE/PI</div><div class="t-title">Fechamento do Cadastro 2026</div><div class="t-zona">${z}</div><span class="t-via-lbl">${isC?'VIA DO CARTÓRIO':'VIA DO ELEITOR'}</span></div><div class="t-num">${s.num}</div><div class="t-field"><span class="l">Emissão:</span><span class="v">${fmtDate(s.data)}</span></div>${isC?`<div class="t-field"><span class="l">Nome:</span><span class="v">${s.nome}</span></div><div class="t-field"><span class="l">Título:</span><span class="v">${s.titulo||'—'}</span></div><div class="t-field"><span class="l">${s.tipo}:</span><span class="v">${s.doc}</span></div>${ol}<div class="t-foot">Uso interno — Cartório Eleitoral<br>Conservar para controle do atendimento diferido</div>`:`<div class="t-foot">Guarde esta senha para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. 9/2026 (alt. 13/2026)</div>`}`;
+}
+
+function buildA4Sheet(){
+  const grid=document.getElementById('a4Grid');grid.innerHTML='';
+  logData.forEach(s=>{const cell=document.createElement('div');cell.className='a4-ticket';cell.innerHTML=viaHTML(s,'eleitor')+`<div class="t-cut">✂ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</div>`+viaHTML(s,'cartorio');grid.appendChild(cell)});
+}
+
+function buildRelacao(){
+  const zona=logData.length?`${logData[0].zona} — ${logData[0].municipio}`:'—';
+  const rows=logData.map(s=>`<tr><td>${s.num}</td><td>${s.horario}</td><td>${s.nome}</td><td>${s.titulo||'—'}</td><td>${s.tipo}: ${s.doc}${s.tipo==='OUTRO'&&s.outro?' ('+s.outro+')':''}</td><td>${fmtDate(s.data)}</td></tr>`).join('');
+  document.getElementById('relacaoPrint').innerHTML=`<div class="rel-header"><h1>Tribunal Regional Eleitoral do Piauí</h1><h2>Fechamento do Cadastro Eleitoral 2026</h2><p>Relação de Eleitores para Atendimento Diferido<br>Art. 3º, §2º — Port. Conj. nº 9/2026 (alt. Port. Conj. nº 13/2026)</p><div class="zona-info">${zona}</div></div><table class="rel-table"><thead><tr><th>Nº</th><th>Horário</th><th>Nome Completo</th><th>Título</th><th>Documento</th><th>Emissão</th></tr></thead><tbody>${rows}</tbody></table><div class="rel-footer"><span>Total: <strong>${logData.length}</strong> senhas</span><span>Gerado em: ${new Date().toLocaleString('pt-BR')}</span></div><div class="rel-sign"><div class="rel-sign-line"><div class="line"></div><div>Responsável pelo Cartório</div></div><div class="rel-sign-line"><div class="line"></div><div>Juiz(a) Eleitoral</div></div></div>`;
+}
+
+function buildThermalArea(s){
+  const z=`${s.zona} — ${s.municipio}`;
+  const docLabel = s.tipo==='CPF'?'CPF:': s.tipo==='RG'?'RG:': s.tipo==='CNH'?'CNH:':'Outro Doc:';
+  const outroLine = s.tipo==='OUTRO'&&s.outro?`<div class="th-field"><span class="th-l">Especif.:</span><span class="th-v">${s.outro}</span></div>`:'';
+  document.getElementById('thermalArea').innerHTML=`
+    <div class="th-via th-via-eleitor">
+      <div class="th-header">
+        <div class="th-org">JUSTIÇA ELEITORAL — TRE/PI</div>
+        <div class="th-title">FECHAMENTO DO CADASTRO 2026</div>
+        <div class="th-zona">${z}</div>
+        <span class="th-via-lbl">VIA DO ELEITOR</span>
+      </div>
+      <div class="th-num">${s.num}</div>
+      <div class="th-field"><span class="th-l">Data:</span><span class="th-v">${fmtDate(s.data)}</span></div>
+      <div class="th-footer">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. nº 9/2026 (alt. 13/2026)</div>
+    </div>
+    <div class="th-via th-via-cartorio">
+      <div class="th-header">
+        <div class="th-org">JUSTIÇA ELEITORAL — TRE/PI</div>
+        <div class="th-title">FECHAMENTO DO CADASTRO 2026</div>
+        <div class="th-zona">${z}</div>
+        <span class="th-via-lbl">VIA DO CARTÓRIO</span>
+      </div>
+      <div class="th-num">${s.num}</div>
+      <div class="th-field"><span class="th-l">Data:</span><span class="th-v">${fmtDate(s.data)}</span></div>
+      <div class="th-field"><span class="th-l">Nome:</span><span class="th-v">${s.nome}</span></div>
+      <div class="th-field"><span class="th-l">Título:</span><span class="th-v">${s.titulo||'NÃO INFORMADO'}</span></div>
+      <div class="th-field"><span class="th-l">${docLabel}</span><span class="th-v">${s.doc}</span></div>
+      ${outroLine}
+      <div class="th-footer">Uso interno — Cartório Eleitoral<br>Port. Conj. nº 9/2026 (alt. Port. Conj. nº 13/2026)</div>
+    </div>`;
+}
+function imprimirTermica(){
+  if(!lastSenha){showToast('⚠ Emita uma senha primeiro');return;}
+  buildThermalArea(lastSenha);
+  document.body.className='print-thermal';
+  setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600)},100);
+}
+function reimprimirTermica(){
+  if(!lastSenha){showToast('Nenhuma senha emitida ainda');return;}
+  imprimirTermica();
+  showToast(`↩ Reimprimindo senha ${lastSenha.num}...`);
+}
+function imprimirA4(){buildA4Sheet();document.body.className='print-a4';setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600)},100)}
+function imprimirRelacao(){if(!logData.length){showToast('Nenhuma senha emitida ainda');return}buildRelacao();document.body.className='print-relacao';setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600)},150)}
+
+function exportarCSV(){
+  if(!logData.length){showToast('Nenhum dado para exportar');return}
+  const h='Nº;Horário;Nome;Zona;Município;Título;Tipo Doc;Documento;Outro;Data Emissão';
+  const rows=logData.map(s=>`${s.num};${s.horario};${s.nome};${s.zona};${s.municipio};${s.titulo};${s.tipo};${s.doc};${s.outro};${fmtDate(s.data)}`);
+  const blob=new Blob(['\uFEFF'+[h,...rows].join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`senhas_eleitoral_${todayStr}.csv`;a.click();showToast('✓ CSV exportado');
+}
+
+function limparForm(){
+  ['fNome','fTitulo','fDoc','fOutro'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList.remove('error')});
+  document.getElementById('fData').value=todayStr;
+  document.querySelectorAll('.doc-type-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
+  currentDocType='CPF';document.getElementById('fDoc').placeholder='000.000.000-00';
+  document.getElementById('rowOutro').style.display='none';
+  document.getElementById('btnImpTermica').disabled=true;document.getElementById('btnImpA4').disabled=true;document.getElementById('btnReimprimir').disabled=true;
+  updatePreview();
+}
+updatePreview();
+</script>
+</body>
+</html>
