@@ -93,14 +93,27 @@
     body.print-thermal .ticket-preview-wrap,
     body.print-thermal .a4-sheet,
     body.print-thermal .relacao-print{display:none !important}
-    /* page break between vias = autocut signal */
-    body.print-thermal .th-via-eleitor{page-break-after:always;break-after:page}
-    body.print-thermal .th-via-cartorio{page-break-after:auto;break-after:auto}
+    /* Single continuous receipt - no cut between vias */
+    body.print-thermal .th-via-eleitor{page-break-after:avoid;break-after:avoid}
+    body.print-thermal .th-cut-line{display:block !important}
 
-    body.print-a4 .ticket-preview-wrap,body.print-a4 .relacao-print,body.print-a4 .thermal-area{display:none !important}
+    /* A4: hide everything except the a4-sheet */
+    body.print-a4 .page,
+    body.print-a4 header,
+    body.print-a4 .ticket-preview-wrap,
+    body.print-a4 .relacao-print,
+    body.print-a4 .thermal-area{display:none !important}
     body.print-a4 .a4-sheet{display:block !important}
-    body.print-relacao .ticket-preview-wrap,body.print-relacao .a4-sheet,body.print-relacao .thermal-area{display:none !important}
+
+    /* RELAÇÃO: hide everything except relacao-print */
+    body.print-relacao .page,
+    body.print-relacao header,
+    body.print-relacao .ticket-preview-wrap,
+    body.print-relacao .a4-sheet,
+    body.print-relacao .thermal-area{display:none !important}
     body.print-relacao .relacao-print{display:block !important}
+
+    /* Default page = thermal; named pages override for A4/relação */
     @page{size:80mm auto;margin:3mm}
     @page a4page{size:A4 portrait;margin:10mm}
     @page relpage{size:A4 portrait;margin:14mm}
@@ -121,6 +134,7 @@
   .th-l{color:#555;white-space:nowrap;min-width:14mm;font-size:7.5pt}
   .th-v{font-weight:700;word-break:break-all}
   .th-footer{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ccc;font-size:6.5pt;color:#666;text-align:center;line-height:1.4}
+  .th-cut-line{text-align:center;font-size:7pt;color:#888;padding:2mm 0;letter-spacing:1px;font-family:'IBM Plex Mono',monospace}
 
   .a4-sheet{font-family:'IBM Plex Mono',monospace}
   .a4-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm;width:190mm}
@@ -279,7 +293,7 @@
 
           <div class="form-grid-2">
             <div class="form-row">
-              <label>Título de Eleitor <span class="req" title="Obrigatório: título e/ou documento">*</span></label>
+              <label>Título de Eleitor <span style="font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0">(ou documento abaixo)</span></label>
               <input type="text" id="fTitulo" placeholder="0000 0000 0000" maxlength="14"
                 oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{4})(\d{4})(\d{4})/,'$1 $2 $3')">
             </div>
@@ -289,8 +303,11 @@
             </div>
           </div>
 
+          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:7px 12px;margin-bottom:10px;font-size:11px;color:#1e40af;line-height:1.4;">
+            <strong>ℹ</strong> Informe o <strong>Título</strong> e/ou o <strong>Documento</strong> — ao menos um é obrigatório (Port. Art. 3º, §2º)
+          </div>
           <div class="form-row">
-            <label>Documento de Identificação <span style="font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0">(e/ou título acima)</span></label>
+            <label>Documento de Identificação <span style="font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0">(ou título acima)</span></label>
             <div class="doc-type-row">
               <button class="doc-type-btn active" onclick="setDocType('CPF',this)">CPF</button>
               <button class="doc-type-btn" onclick="setDocType('RG',this)">RG</button>
@@ -381,6 +398,24 @@
     </div>
   </div>
 </div>
+
+<!-- DISCLAIMER FOOTER -->
+<footer class="no-print" style="
+  background:#1a1a2e; color:rgba(255,255,255,0.55);
+  text-align:center; padding:14px 24px; font-size:11px;
+  line-height:1.6; border-top:3px solid #00873d;
+  font-family:'IBM Plex Sans',sans-serif;
+">
+  <span style="color:rgba(255,255,255,0.85);font-weight:600;">⚠ Projeto pessoal</span>
+  &nbsp;·&nbsp;
+  Este sistema foi desenvolvido como projeto pessoal para facilitar o trabalho no período de fechamento do cadastro eleitoral.
+  Apesar de utilizar informações do <strong style="color:rgba(255,255,255,0.75);">TRE-PI</strong>, este aplicativo
+  <strong style="color:rgba(255,255,255,0.75);">não possui qualquer vínculo oficial com o Tribunal Regional Eleitoral do Piauí</strong>.
+  &nbsp;·&nbsp;
+  Desenvolvido por <span style="color:rgba(255,255,255,0.85);font-weight:600;">Bernardo Borges Silva</span> com o auxílio do
+  <span style="color:#a78bfa;font-weight:600;">Claude (Anthropic)</span>
+  &nbsp;✦
+</footer>
 
 <div class="a4-sheet" id="a4Sheet"><div class="a4-grid" id="a4Grid"></div></div>
 <div class="relacao-print" id="relacaoPrint"></div>
@@ -524,6 +559,7 @@ function buildThermalArea(s){
       <div class="th-field"><span class="th-l">Data:</span><span class="th-v">${fmtDate(s.data)}</span></div>
       <div class="th-footer">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. nº 9/2026 (alt. 13/2026)</div>
     </div>
+    <div class="th-cut-line">- - - - - - - - - - - - - - - - - - - -</div>
     <div class="th-via th-via-cartorio">
       <div class="th-header">
         <div class="th-org">JUSTIÇA ELEITORAL — TRE/PI</div>
