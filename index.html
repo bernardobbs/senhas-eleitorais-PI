@@ -5,260 +5,279 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Fechamento do Cadastro Eleitoral 2026 — TRE/PI</title>
 <style>
-  @import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
-  :root{--green:#00873d;--green-light:#e6f4ec;--gold:#f5a623;--dark:#1a1a2e;--gray:#6b7280;--border:#d1d5db;--bg:#f0f2f5;--white:#fff;--red:#dc2626}
-  *{box-sizing:border-box;margin:0;padding:0}
-  body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100vh;color:var(--dark)}
-  header{background:var(--green);color:white;display:flex;align-items:stretch}
-  .hflag{width:8px;background:linear-gradient(to bottom,#009c3b 33%,#ffdf00 33% 66%,#002776 66%);flex-shrink:0}
-  .hcontent{padding:14px 24px;flex:1}
-  .htop{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:3px}
-  .htitle{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700}
-  .hsub{font-size:11px;opacity:.75;margin-top:2px}
-  .hbadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:6px 14px;font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:700;align-self:center;margin:14px 20px;text-align:center;min-width:80px}
-  .hbadge small{display:block;font-size:9px;letter-spacing:1px;opacity:.7;font-weight:400}
-  .page{max-width:1100px;margin:0 auto;padding:20px 16px}
-  .content-grid{display:grid;grid-template-columns:1fr 330px;gap:20px;align-items:start}
-  .card{background:var(--white);border:1px solid var(--border);border-radius:8px;overflow:hidden}
-  .card-head{background:var(--dark);color:white;padding:11px 20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
-  .card-head .dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
-  .card-body{padding:20px}
-  .alert-box{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid var(--gold);border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#92400e;line-height:1.5}
-  .alert-box strong{color:#78350f}
-  .form-row{margin-bottom:14px}
-  .form-row label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
-  .form-row label .req{color:var(--red);margin-left:2px}
-  .form-row input,.form-row select{width:100%;border:1.5px solid var(--border);border-radius:6px;padding:9px 13px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;color:var(--dark);background:white;transition:border-color .15s;outline:none;appearance:none;-webkit-appearance:none}
-  .select-wrap{position:relative}
-  .select-wrap::after{content:'▾';position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none;font-size:14px}
-  .form-row input:focus,.form-row select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,61,.1)}
-  .form-row input.error,.form-row select.error{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.1)}
-  .zone-chip{display:none;align-items:center;gap:8px;background:var(--green-light);border:1.5px solid var(--green);border-radius:6px;padding:8px 12px;margin-top:8px}
-  .zone-chip.visible{display:flex}
-  .zone-chip-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
-  .zone-chip-text{font-size:12px;font-weight:600;color:#166534}
-  .form-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-  .doc-type-row{display:flex;gap:6px;margin-bottom:7px}
-  .doc-type-btn{flex:1;padding:7px 6px;border:1.5px solid var(--border);border-radius:6px;background:white;cursor:pointer;font-size:12px;font-weight:500;color:var(--gray);transition:all .15s;font-family:'IBM Plex Sans',sans-serif}
-  .doc-type-btn.active{border-color:var(--green);background:var(--green-light);color:var(--green);font-weight:600}
-  .btn-group{display:flex;gap:10px;margin-top:20px}
-  .btn{padding:11px 20px;border-radius:6px;border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;transition:all .15s;display:flex;align-items:center;gap:6px}
-  .btn-primary{background:var(--green);color:white;flex:1;justify-content:center}
-  .btn-primary:hover{background:#006d32}
-  .btn-secondary{background:white;color:var(--dark);border:1.5px solid var(--border)}
-  .btn-secondary:hover{background:var(--bg)}
-  .btn:disabled{opacity:.4;cursor:not-allowed}
-  .preview-label{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
-  .ticket{background:white;border:1px dashed var(--border);border-radius:4px;font-family:'IBM Plex Mono',monospace;font-size:11px;overflow:hidden;box-shadow:2px 2px 8px rgba(0,0,0,.06)}
-  .ticket-via{padding:12px 14px;line-height:1.6}
-  .ticket-via.via-cartorio{background:#fafafa;border-top:2px dashed var(--border)}
-  .ticket-header{text-align:center;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid #e5e7eb}
-  .ticket-org{font-size:8px;letter-spacing:.5px;text-transform:uppercase;color:var(--gray)}
-  .ticket-title{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
-  .ticket-zona{font-size:8px;color:var(--gray);margin-top:1px}
-  .ticket-via-label{font-size:8px;background:var(--dark);color:white;padding:2px 6px;border-radius:2px;display:inline-block;margin-top:3px;letter-spacing:1px}
-  .ticket-num{font-size:30px;font-weight:700;text-align:center;letter-spacing:-1px;margin:8px 0;color:var(--green)}
-  .ticket-field{font-size:9px;margin-bottom:3px;display:flex;gap:4px}
-  .ticket-field .lbl{color:var(--gray);white-space:nowrap;min-width:55px}
-  .ticket-field .val{font-weight:600;word-break:break-all}
-  .ticket-footer{margin-top:8px;padding-top:7px;border-top:1px solid #e5e7eb;font-size:8px;color:var(--gray);text-align:center;line-height:1.4}
-  .ticket-cut-line{text-align:center;font-size:10px;color:#9ca3af;background:var(--bg);padding:3px;letter-spacing:4px}
-  .log-section{margin-top:20px}
-  .log-table-wrap{overflow-x:auto}
-  table{width:100%;border-collapse:collapse;font-size:12px}
-  thead th{background:var(--dark);color:white;padding:9px 12px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
-  tbody tr:nth-child(even){background:var(--bg)}
-  tbody tr:hover{background:var(--green-light)}
-  tbody td{padding:8px 12px;border-bottom:1px solid var(--border)}
-  tbody td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--green);font-size:14px}
-  .empty-row td{text-align:center;color:var(--gray);font-style:italic;padding:24px}
-  .table-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
-  .counter-badge{background:var(--green);color:white;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px}
-  .table-btns{display:flex;gap:8px;flex-wrap:wrap}
-  .toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:white;padding:11px 18px;border-radius:8px;font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:999;border-left:4px solid var(--green)}
-  .toast.show{opacity:1;transform:translateY(0)}
-  .a4-sheet{display:none}
-  .relacao-print{display:none}
-  .thermal-area{display:none}
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600;700&family=IBM+Plex+Sans:wght@400;500;600&display=swap');
+:root{
+  --green:#00873d;--gl:#e6f4ec;--gold:#f5a623;
+  --dark:#1a1a2e;--gray:#6b7280;--bd:#d1d5db;
+  --bg:#f0f2f5;--white:#fff;--red:#dc2626;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--bg);min-height:100vh;color:var(--dark)}
 
-  @media print{
-    body,html{background:white !important}
-    header,.content-grid>div:first-child,.log-section,.preview-panel .preview-label,.preview-panel>div:last-child,.no-print{display:none !important}
-    .page{padding:0 !important;max-width:none !important}
-    .content-grid{display:block !important}
-    .preview-panel{display:block !important}
+/* ── LOGIN ── */
+#loginScreen{position:fixed;inset:0;background:#0f1124;display:flex;align-items:center;justify-content:center;z-index:9999}
+.lbox{background:#1a1a2e;border:1px solid rgba(255,255,255,.12);border-radius:12px;padding:36px 40px;width:100%;max-width:400px;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+.lflag{height:5px;background:linear-gradient(to right,#009c3b 33%,#ffdf00 33% 66%,#002776 66%);margin:-36px -40px 28px;border-radius:12px 12px 0 0}
+.llogo{text-align:center;margin-bottom:24px}
+.llogo .icon{font-size:36px;display:block;margin-bottom:8px}
+.llogo h1{font-family:'IBM Plex Mono',monospace;font-size:13px;color:white;font-weight:700;letter-spacing:.5px}
+.llogo p{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px}
+.lf{margin-bottom:16px}
+.lf label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px}
+.lf input{width:100%;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);border-radius:6px;padding:10px 14px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;color:white;outline:none;transition:border-color .15s}
+.lf input:focus{border-color:var(--green)}
+.lf input.le{border-color:var(--red)}
+.lbtn{width:100%;padding:12px;background:var(--green);color:white;border:none;border-radius:6px;font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;transition:background .15s}
+.lbtn:hover{background:#006d32}
+.lerr{color:#f87171;font-size:12px;text-align:center;margin-top:10px;display:none}
+.lerr.show{display:block}
+.ldiscl{margin-top:18px;padding-top:14px;border-top:1px solid rgba(255,255,255,.08);font-size:10px;color:rgba(255,255,255,.3);text-align:center;line-height:1.6}
+.ldiscl strong{color:rgba(255,255,255,.45)}
 
-    /* THERMAL: show only thermalArea */
-    body.print-thermal .thermal-area{display:block !important}
-    body.print-thermal .ticket-preview-wrap,
-    body.print-thermal .a4-sheet,
-    body.print-thermal .relacao-print{display:none !important}
-    /* Single continuous receipt - no cut between vias */
-    body.print-thermal .th-via-eleitor{page-break-after:avoid;break-after:avoid}
-    body.print-thermal .th-cut-line{display:block !important}
+/* ── SESSION BAR ── */
+.sbar{background:#0f1124;color:rgba(255,255,255,.55);font-size:11px;padding:6px 24px;display:flex;align-items:center;justify-content:space-between;font-family:'IBM Plex Mono',monospace;flex-wrap:wrap;gap:6px}
+.sbar-group{display:flex;align-items:center;gap:8px}
+.sbar input[type=number]{width:62px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:2px 6px;color:#fde68a;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;text-align:center;outline:none}
+.sbar-btn{background:rgba(0,135,61,.35);border:1px solid rgba(0,135,61,.5);color:#86efac;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit}
+.sbar-enc{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.12);color:rgba(255,255,255,.5);padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit}
 
-    /* A4: hide everything except the a4-sheet */
-    body.print-a4 .page,
-    body.print-a4 header,
-    body.print-a4 .ticket-preview-wrap,
-    body.print-a4 .relacao-print,
-    body.print-a4 .thermal-area{display:none !important}
-    body.print-a4 .a4-sheet{display:block !important}
+/* ── HEADER ── */
+header{background:var(--green);color:white;display:flex;align-items:stretch}
+.hflag{width:8px;background:linear-gradient(to bottom,#009c3b 33%,#ffdf00 33% 66%,#002776 66%);flex-shrink:0}
+.hcontent{padding:14px 24px;flex:1}
+.htop{font-size:10px;letter-spacing:2px;text-transform:uppercase;opacity:.8;margin-bottom:3px}
+.htitle{font-family:'IBM Plex Mono',monospace;font-size:17px;font-weight:700}
+.hsub{font-size:11px;opacity:.75;margin-top:2px}
+.hbadge{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);border-radius:4px;padding:6px 14px;font-family:'IBM Plex Mono',monospace;font-size:22px;font-weight:700;align-self:center;margin:14px 20px;text-align:center;min-width:80px}
+.hbadge small{display:block;font-size:9px;letter-spacing:1px;opacity:.7;font-weight:400}
 
-    /* RELAÇÃO: hide everything except relacao-print */
-    body.print-relacao .page,
-    body.print-relacao header,
-    body.print-relacao .ticket-preview-wrap,
-    body.print-relacao .a4-sheet,
-    body.print-relacao .thermal-area{display:none !important}
-    body.print-relacao .relacao-print{display:block !important}
+/* ── PAGE / GRID ── */
+.page{max-width:1100px;margin:0 auto;padding:20px 16px}
+.cgrid{display:grid;grid-template-columns:1fr 330px;gap:20px;align-items:start}
 
-    /* Default page = thermal; named pages override for A4/relação */
-    @page{size:80mm auto;margin:3mm}
-    @page a4page{size:A4 portrait;margin:10mm}
-    @page relpage{size:A4 portrait;margin:14mm}
-    body.print-a4 .a4-sheet{page:a4page}
-    body.print-relacao .relacao-print{page:relpage}
-  }
+/* ── CARDS ── */
+.card{background:var(--white);border:1px solid var(--bd);border-radius:8px;overflow:hidden}
+.card-head{background:var(--dark);color:white;padding:11px 20px;font-family:'IBM Plex Mono',monospace;font-size:11px;letter-spacing:1.5px;text-transform:uppercase;display:flex;align-items:center;gap:8px}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--gold)}
+.card-body{padding:20px}
 
-  /* Thermal ticket styles */
-  .thermal-area{font-family:'IBM Plex Mono',monospace;font-size:10pt;width:72mm}
-  .th-via{padding:2mm 0;line-height:1.55}
-  .th-header{text-align:center;border-bottom:1px solid #999;padding-bottom:2.5mm;margin-bottom:2.5mm}
-  .th-org{font-size:7pt;text-transform:uppercase;letter-spacing:.3px;color:#444}
-  .th-title{font-size:8.5pt;font-weight:700;text-transform:uppercase;margin-top:1mm}
-  .th-zona{font-size:7pt;color:#555;margin-top:.5mm}
-  .th-via-lbl{display:inline-block;background:#000;color:#fff;font-size:6.5pt;padding:1.5px 7px;border-radius:2px;margin-top:1.5mm;letter-spacing:.5px}
-  .th-num{font-size:28pt;font-weight:700;text-align:center;margin:2.5mm 0 2mm;letter-spacing:-1px}
-  .th-field{font-size:8pt;margin-bottom:1.5mm;display:flex;gap:2mm;line-height:1.4}
-  .th-l{color:#555;white-space:nowrap;min-width:14mm;font-size:7.5pt}
-  .th-v{font-weight:700;word-break:break-all}
-  .th-footer{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ccc;font-size:6.5pt;color:#666;text-align:center;line-height:1.4}
-  .th-cut-line{text-align:center;font-size:7pt;color:#888;padding:2mm 0;letter-spacing:1px;font-family:'IBM Plex Mono',monospace}
+/* ── ALERT ── */
+.alert{background:#fff7ed;border:1px solid #fed7aa;border-left:4px solid var(--gold);border-radius:6px;padding:10px 14px;margin-bottom:16px;font-size:12px;color:#92400e;line-height:1.5}
+.alert strong{color:#78350f}
 
-  /* ── LOGIN SCREEN ── */
-  #loginScreen{
-    position:fixed;inset:0;background:#0f1124;
-    display:flex;align-items:center;justify-content:center;
-    z-index:9999;font-family:'IBM Plex Sans',sans-serif;
-  }
-  .login-box{
-    background:#1a1a2e;border:1px solid rgba(255,255,255,.12);
-    border-radius:12px;padding:36px 40px;width:100%;max-width:420px;
-    box-shadow:0 20px 60px rgba(0,0,0,.5);
-  }
-  .login-flag{height:5px;background:linear-gradient(to right,#009c3b 33%,#ffdf00 33% 66%,#002776 66%);border-radius:4px 4px 0 0;margin:-36px -40px 28px;border-radius:12px 12px 0 0;}
-  .login-logo{text-align:center;margin-bottom:24px;}
-  .login-logo .icon{font-size:36px;display:block;margin-bottom:8px;}
-  .login-logo h1{font-family:'IBM Plex Mono',monospace;font-size:14px;color:white;font-weight:700;letter-spacing:.5px;}
-  .login-logo p{font-size:11px;color:rgba(255,255,255,.4);margin-top:4px;}
-  .login-field{margin-bottom:16px;}
-  .login-field label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:rgba(255,255,255,.45);margin-bottom:6px;}
-  .login-field input{
-    width:100%;background:rgba(255,255,255,.07);border:1.5px solid rgba(255,255,255,.12);
-    border-radius:6px;padding:10px 14px;font-size:14px;
-    font-family:'IBM Plex Sans',sans-serif;color:white;outline:none;transition:border-color .15s;
-  }
-  .login-field input:focus{border-color:#00873d;background:rgba(255,255,255,.1);}
-  .login-field input.lerror{border-color:#dc2626;}
-  .login-counter-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;}
-  .login-btn{
-    width:100%;padding:12px;background:#00873d;color:white;border:none;border-radius:6px;
-    font-family:'IBM Plex Sans',sans-serif;font-size:14px;font-weight:700;cursor:pointer;
-    margin-top:8px;transition:background .15s;
-  }
-  .login-btn:hover{background:#006d32;}
-  .login-err{color:#f87171;font-size:12px;text-align:center;margin-top:10px;display:none;}
-  .login-err.show{display:block;}
-  .login-disclaimer{
-    margin-top:20px;padding-top:16px;border-top:1px solid rgba(255,255,255,.08);
-    font-size:10px;color:rgba(255,255,255,.3);text-align:center;line-height:1.6;
-  }
-  .login-disclaimer strong{color:rgba(255,255,255,.5);}
+/* ── FORM ── */
+.fr{margin-bottom:14px}
+.fr label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:5px}
+.fr label .req{color:var(--red);margin-left:2px}
+.fr label .opt{font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0;margin-left:4px}
+.fr input,.fr select{width:100%;border:1.5px solid var(--bd);border-radius:6px;padding:9px 13px;font-size:14px;font-family:'IBM Plex Sans',sans-serif;color:var(--dark);background:white;transition:border-color .15s;outline:none;appearance:none;-webkit-appearance:none}
+.fr input:focus,.fr select:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,61,.1)}
+.fr input.err,.fr select.err{border-color:var(--red);box-shadow:0 0 0 3px rgba(220,38,38,.1)}
+.swrap{position:relative}
+.swrap::after{content:'▾';position:absolute;right:13px;top:50%;transform:translateY(-50%);color:var(--gray);pointer-events:none}
+.fg2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 
-  /* ── SESSION BAR ── */
-  .session-bar{
-    background:#0f1124;color:rgba(255,255,255,.6);
-    font-size:11px;padding:6px 24px;
-    display:flex;align-items:center;justify-content:space-between;
-    font-family:'IBM Plex Mono',monospace;flex-wrap:wrap;gap:4px;
-  }
-  .session-bar .sop{color:#86efac;font-weight:700;}
-  .session-bar .snum{color:#fde68a;}
+/* ── ZONE CHIP ── */
+.zchip{display:none;align-items:center;gap:8px;background:var(--gl);border:1.5px solid var(--green);border-radius:6px;padding:8px 12px;margin-top:8px}
+.zchip.on{display:flex}
+.zchip-dot{width:8px;height:8px;border-radius:50%;background:var(--green);flex-shrink:0}
+.zchip-txt{font-size:12px;font-weight:600;color:#166534}
 
-  /* ── COUNTER EDIT ── */
-  .counter-edit-wrap{display:flex;align-items:center;gap:6px;margin-bottom:10px;}
-  .counter-edit-wrap label{font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);white-space:nowrap;}
-  .counter-edit-wrap input{width:80px;border:1.5px solid var(--border);border-radius:6px;padding:6px 10px;font-size:14px;font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--green);text-align:center;outline:none;}
-  .counter-edit-wrap input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,61,.1);}
-  .counter-edit-wrap .btn-apply{padding:6px 12px;font-size:12px;}
+/* ── DOC TYPE ── */
+.dtrow{display:flex;gap:6px;margin-bottom:7px}
+.dtbtn{flex:1;padding:7px 6px;border:1.5px solid var(--bd);border-radius:6px;background:white;cursor:pointer;font-size:12px;font-weight:500;color:var(--gray);transition:all .15s;font-family:'IBM Plex Sans',sans-serif}
+.dtbtn.on{border-color:var(--green);background:var(--gl);color:var(--green);font-weight:600}
 
-  .a4-sheet{font-family:'IBM Plex Mono',monospace}
-  .a4-grid{display:grid;grid-template-columns:1fr 1fr;gap:6mm;width:190mm}
-  .a4-ticket{border:1px dashed #aaa;font-size:8.5pt;padding:4mm;page-break-inside:avoid;break-inside:avoid;line-height:1.5}
-  .a4-ticket .t-head{text-align:center;padding-bottom:2.5mm;border-bottom:1px solid #ccc;margin-bottom:2.5mm}
-  .a4-ticket .t-org{font-size:6.5pt;text-transform:uppercase;color:#666}
-  .a4-ticket .t-title{font-size:8pt;font-weight:700;text-transform:uppercase;margin-top:1mm}
-  .a4-ticket .t-zona{font-size:6.5pt;color:#555;margin-top:.5mm}
-  .a4-ticket .t-via-lbl{display:inline-block;background:#1a1a2e;color:white;font-size:6pt;padding:1px 5px;border-radius:2px;margin-top:1mm}
-  .a4-ticket .t-num{font-size:22pt;font-weight:700;text-align:center;color:#00873d;margin:1.5mm 0;letter-spacing:-1px}
-  .a4-ticket .t-field{font-size:7.5pt;margin-bottom:1.5mm;display:flex;gap:2mm}
-  .a4-ticket .t-field .l{color:#555;white-space:nowrap;min-width:13mm}
-  .a4-ticket .t-field .v{font-weight:600;word-break:break-all}
-  .a4-ticket .t-foot{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ddd;font-size:6pt;color:#777;text-align:center;line-height:1.4}
-  .a4-ticket .t-cut{text-align:center;font-size:7pt;color:#bbb;letter-spacing:2px;margin:1.5mm 0}
-  .relacao-print{font-family:'IBM Plex Sans',sans-serif;font-size:9pt;color:#111}
-  .rel-header{text-align:center;margin-bottom:6mm}
-  .rel-header h1{font-size:12pt;font-weight:700;text-transform:uppercase}
-  .rel-header h2{font-size:10pt;font-weight:600;margin-top:1mm}
-  .rel-header p{font-size:8pt;color:#555;margin-top:1.5mm;line-height:1.5}
-  .rel-header .zona-info{font-size:9pt;font-weight:700;margin-top:3mm;border:1.5px solid #1a1a2e;display:inline-block;padding:3px 14px;border-radius:3px}
-  .rel-table{width:100%;border-collapse:collapse;margin-top:4mm}
-  .rel-table th{background:#1a1a2e;color:white;padding:4px 8px;font-size:8pt;text-align:left}
-  .rel-table td{padding:4px 8px;border-bottom:1px solid #ddd;font-size:8pt}
-  .rel-table tr:nth-child(even) td{background:#f5f5f5}
-  .rel-table td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:700;color:#00873d}
-  .rel-footer{margin-top:6mm;font-size:8pt;color:#555;border-top:1px solid #ccc;padding-top:3mm;display:flex;justify-content:space-between}
-  .rel-sign{margin-top:18mm;display:flex;justify-content:center;gap:30mm}
-  .rel-sign-line{text-align:center;font-size:8pt}
-  .rel-sign-line .line{border-top:1px solid #333;width:55mm;margin-bottom:2mm}
+/* ── OR DIVIDER ── */
+.or-info{background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:7px 12px;margin-bottom:10px;font-size:11px;color:#1e40af;line-height:1.4}
+
+/* ── DATE CONFIG ── */
+.dcp{background:#f0fdf4;border:1.5px solid #86efac;border-radius:8px;padding:14px 16px;margin-bottom:16px;display:none}
+.dcp.on{display:block}
+.dcp-title{font-size:10px;font-weight:700;letter-spacing:1px;text-transform:uppercase;color:#166534;margin-bottom:10px}
+.dcp-toggle{display:flex;align-items:center;gap:8px;cursor:pointer;user-select:none}
+.dcp-toggle input{width:16px;height:16px;accent-color:var(--green);cursor:pointer}
+.dcp-toggle span{font-size:13px;font-weight:500;color:var(--dark)}
+.dcp-fields{display:none}
+.dcp-fields.on{display:block}
+.dcp-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+.dcp-field label{display:block;font-size:10px;font-weight:600;letter-spacing:1px;text-transform:uppercase;color:var(--gray);margin-bottom:4px}
+.dcp-field input{width:100%;border:1.5px solid var(--bd);border-radius:6px;padding:7px 10px;font-size:13px;font-family:'IBM Plex Sans',sans-serif;color:var(--dark);outline:none}
+.dcp-field input:focus{border-color:var(--green);box-shadow:0 0 0 3px rgba(0,135,61,.1)}
+.slots-box{margin-top:10px;padding:8px 10px;background:white;border-radius:6px;border:1px solid #bbf7d0;font-size:11px;color:#166534;line-height:1.6}
+.slot-row{display:flex;justify-content:space-between;align-items:center;padding:2px 0;border-bottom:1px solid #f0fdf4}
+.slot-row:last-child{border-bottom:none}
+.slot-full{color:var(--red);font-weight:700}
+.slot-ok{color:var(--green);font-weight:600}
+
+/* ── BUTTONS ── */
+.btn-group{display:flex;gap:10px;margin-top:20px}
+.btn{padding:11px 20px;border-radius:6px;border:none;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-size:13px;font-weight:600;transition:all .15s;display:flex;align-items:center;gap:6px}
+.btn-p{background:var(--green);color:white;flex:1;justify-content:center}
+.btn-p:hover{background:#006d32}
+.btn-s{background:white;color:var(--dark);border:1.5px solid var(--bd)}
+.btn-s:hover{background:var(--bg)}
+.btn:disabled{opacity:.4;cursor:not-allowed}
+
+/* ── PREVIEW TICKET ── */
+.plabel{font-size:10px;font-weight:600;letter-spacing:1.5px;text-transform:uppercase;color:var(--gray);margin-bottom:10px}
+.ticket{background:white;border:1px dashed var(--bd);border-radius:4px;font-family:'Courier New',Courier,monospace;font-size:11px;overflow:hidden;box-shadow:2px 2px 8px rgba(0,0,0,.06)}
+.tvia{padding:12px 14px;line-height:1.6}
+.tvia.tc{background:#fafafa;border-top:2px dashed var(--bd)}
+.thead{text-align:center;margin-bottom:8px;padding-bottom:7px;border-bottom:1px solid #e5e7eb}
+.torg{font-size:8px;letter-spacing:.5px;text-transform:uppercase;color:var(--gray)}
+.ttitle{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.5px;margin-top:2px}
+.tzona{font-size:8px;color:var(--gray);margin-top:1px}
+.tvlbl{font-size:8px;background:var(--dark);color:white;padding:2px 6px;border-radius:2px;display:inline-block;margin-top:3px;letter-spacing:1px}
+.tnum{font-size:30px;font-weight:700;text-align:center;letter-spacing:-1px;margin:8px 0;color:var(--green)}
+.tfield{font-size:9px;margin-bottom:3px;display:flex;gap:4px}
+.tfield .l{color:var(--gray);white-space:nowrap;min-width:55px}
+.tfield .v{font-weight:600;word-break:break-all}
+.tfield.datend .l{color:#166534;font-weight:700}
+.tfield.datend .v{color:#166534;font-weight:700}
+.tfoot{margin-top:8px;padding-top:7px;border-top:1px solid #e5e7eb;font-size:8px;color:var(--gray);text-align:center;line-height:1.4}
+.tcut{text-align:center;font-size:10px;color:#9ca3af;background:var(--bg);padding:3px;letter-spacing:4px}
+
+/* ── LOG TABLE ── */
+.log-sect{margin-top:20px}
+.log-wrap{overflow-x:auto}
+table{width:100%;border-collapse:collapse;font-size:12px}
+thead th{background:var(--dark);color:white;padding:9px 12px;text-align:left;font-family:'IBM Plex Mono',monospace;font-size:9px;letter-spacing:1px;text-transform:uppercase;font-weight:600}
+tbody tr:nth-child(even){background:var(--bg)}
+tbody tr:hover{background:var(--gl)}
+tbody td{padding:8px 12px;border-bottom:1px solid var(--bd)}
+tbody td:first-child{font-family:'IBM Plex Mono',monospace;font-weight:700;color:var(--green);font-size:14px}
+.empty td{text-align:center;color:var(--gray);font-style:italic;padding:24px}
+.tbl-actions{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;flex-wrap:wrap;gap:8px}
+.cbadge{background:var(--green);color:white;font-family:'IBM Plex Mono',monospace;font-size:12px;font-weight:700;padding:4px 12px;border-radius:20px}
+.tbl-btns{display:flex;gap:8px;flex-wrap:wrap}
+.tbl-btn{padding:6px 14px;font-size:12px;border-radius:6px;border:1.5px solid var(--bd);background:white;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-weight:600;color:var(--dark);transition:background .15s}
+.tbl-btn:hover{background:var(--bg)}
+.tbl-btn:disabled{opacity:.4;cursor:not-allowed}
+.import-lbl{display:inline-flex;align-items:center;padding:6px 14px;font-size:12px;border-radius:6px;border:1.5px solid var(--bd);background:white;cursor:pointer;font-family:'IBM Plex Sans',sans-serif;font-weight:600;color:var(--dark);transition:background .15s}
+.import-lbl:hover{background:var(--bg)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:24px;right:24px;background:var(--dark);color:white;padding:11px 18px;border-radius:8px;font-size:13px;font-weight:500;opacity:0;transform:translateY(8px);transition:all .3s;pointer-events:none;z-index:9998;border-left:4px solid var(--green)}
+.toast.on{opacity:1;transform:translateY(0)}
+
+/* ── FOOTER ── */
+footer{background:#1a1a2e;color:rgba(255,255,255,.5);text-align:center;padding:14px 24px;font-size:11px;line-height:1.7;border-top:3px solid var(--green);font-family:'IBM Plex Sans',sans-serif}
+footer .ft{color:#fbbf24;font-weight:700;font-size:12px;display:block;margin-bottom:4px}
+
+/* ════════════════ PRINT ════════════════ */
+.thermal-area{display:none}
+.a4-sheet{display:none}
+.rel-print{display:none}
+
+@media print{
+  body,html{background:white !important}
+  header,.sbar,.page,footer,.toast,#loginScreen,.no-print{display:none !important}
+
+  /* THERMAL */
+  body.pt .thermal-area{display:block !important}
+  body.pt .a4-sheet,body.pt .rel-print{display:none !important}
+  @page{size:80mm auto;margin:3mm}
+
+  /* A4 */
+  body.pa .a4-sheet{display:block !important}
+  body.pa .thermal-area,body.pa .rel-print{display:none !important}
+  @page a4p{size:A4 landscape;margin:8mm}
+  body.pa .a4-sheet{page:a4p}
+
+  /* RELAÇÃO */
+  body.pr .rel-print{display:block !important}
+  body.pr .thermal-area,body.pr .a4-sheet{display:none !important}
+  @page relp{size:A4 portrait;margin:14mm}
+  body.pr .rel-print{page:relp}
+}
+
+/* ── THERMAL PRINT STYLES ── */
+.thermal-area{font-family:'Courier New',Courier,monospace;font-size:10pt;width:72mm;line-height:1.55}
+.th-via{padding:2mm 0}
+.th-head{text-align:center;border-bottom:1px solid #999;padding-bottom:2.5mm;margin-bottom:2.5mm}
+.th-org{font-size:7pt;text-transform:uppercase;letter-spacing:.3px;color:#444}
+.th-title{font-size:8.5pt;font-weight:700;text-transform:uppercase;margin-top:1mm}
+.th-zona{font-size:7pt;color:#555;margin-top:.5mm}
+.th-vlbl{display:inline-block;background:#000;color:#fff;font-size:6.5pt;padding:1.5px 7px;border-radius:2px;margin-top:1.5mm;letter-spacing:.5px}
+.th-num{font-size:28pt;font-weight:700;text-align:center;margin:2.5mm 0 2mm;letter-spacing:-1px}
+.th-field{font-size:8pt;margin-bottom:1.5mm;display:flex;gap:2mm}
+.th-l{color:#555;white-space:nowrap;min-width:14mm;font-size:7.5pt}
+.th-v{font-weight:700;word-break:break-all}
+.th-datend .th-l{color:#000;font-weight:700}
+.th-datend .th-v{color:#000;font-weight:700}
+.th-foot{margin-top:2.5mm;padding-top:2mm;border-top:1px solid #ccc;font-size:6.5pt;color:#666;text-align:center;line-height:1.4}
+.th-cut{text-align:center;font-size:7pt;color:#888;padding:2.5mm 0;letter-spacing:1px;font-family:'Courier New',Courier,monospace}
+
+/* ── A4 PRINT STYLES (landscape 4 cols) ── */
+.a4-sheet{font-family:'Courier New',Courier,monospace}
+.a4-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:4mm;width:281mm}
+.a4t{border:1px dashed #aaa;font-size:7.5pt;padding:3mm;page-break-inside:avoid;break-inside:avoid;line-height:1.45}
+.a4t .th{text-align:center;padding-bottom:2mm;border-bottom:1px solid #ccc;margin-bottom:2mm}
+.a4t .to{font-size:6pt;text-transform:uppercase;color:#666}
+.a4t .tt{font-size:7.5pt;font-weight:700;text-transform:uppercase;margin-top:1mm}
+.a4t .tz{font-size:6pt;color:#555;margin-top:.5mm}
+.a4t .tv{display:inline-block;background:#1a1a2e;color:white;font-size:5.5pt;padding:1px 5px;border-radius:2px;margin-top:1mm}
+.a4t .tn{font-size:18pt;font-weight:700;text-align:center;color:#00873d;margin:1.5mm 0;letter-spacing:-1px}
+.a4t .tf{font-size:7pt;margin-bottom:1.5mm;display:flex;gap:2mm}
+.a4t .tf .l{color:#555;white-space:nowrap;min-width:12mm}
+.a4t .tf .v{font-weight:600;word-break:break-all}
+.a4t .tf.da .l{color:#000;font-weight:700}
+.a4t .tf.da .v{color:#000;font-weight:700}
+.a4t .tfo{margin-top:2mm;padding-top:2mm;border-top:1px solid #ddd;font-size:5.5pt;color:#777;text-align:center;line-height:1.4}
+.a4t .tc{text-align:center;font-size:6.5pt;color:#bbb;letter-spacing:2px;margin:1.5mm 0}
+
+/* ── RELAÇÃO PRINT ── */
+.rel-print{font-family:'IBM Plex Sans',sans-serif;font-size:9pt;color:#111}
+.rel-h{text-align:center;margin-bottom:6mm}
+.rel-h h1{font-size:12pt;font-weight:700;text-transform:uppercase}
+.rel-h h2{font-size:10pt;font-weight:600;margin-top:1mm}
+.rel-h p{font-size:8pt;color:#555;margin-top:1.5mm;line-height:1.5}
+.rel-h .zi{font-size:9pt;font-weight:700;margin-top:3mm;border:1.5px solid #1a1a2e;display:inline-block;padding:3px 14px;border-radius:3px}
+.rel-table{width:100%;border-collapse:collapse;margin-top:4mm}
+.rel-table th{background:#1a1a2e;color:white;padding:4px 8px;font-size:8pt;text-align:left}
+.rel-table td{padding:4px 8px;border-bottom:1px solid #ddd;font-size:8pt}
+.rel-table tr:nth-child(even) td{background:#f5f5f5}
+.rel-table td:first-child{font-family:'Courier New',Courier,monospace;font-weight:700;color:#00873d}
+.rel-foot{margin-top:6mm;font-size:8pt;color:#555;border-top:1px solid #ccc;padding-top:3mm;display:flex;justify-content:space-between}
+.rel-sign{margin-top:18mm;display:flex;justify-content:center;gap:30mm}
+.rel-sign-line{text-align:center;font-size:8pt}
+.rel-sign-line .line{border-top:1px solid #333;width:55mm;margin-bottom:2mm}
 </style>
 </head>
 <body>
 
-<!-- ══ LOGIN SCREEN ══ -->
+<!-- LOGIN -->
 <div id="loginScreen">
-  <div class="login-box">
-    <div class="login-flag"></div>
-    <div class="login-logo">
+  <div class="lbox">
+    <div class="lflag"></div>
+    <div class="llogo">
       <span class="icon">🗳️</span>
       <h1>Fechamento do Cadastro Eleitoral 2026</h1>
-      <p>Acesso restrito ao operador autorizado</p>
+      <p>Acesso restrito — informe a senha para continuar</p>
     </div>
-    <div class="login-field">
-      <label>Senha de Acesso <span style="font-size:9px;color:rgba(255,255,255,.3);font-weight:400;text-transform:none;letter-spacing:0;">— protegida por SHA-256</span></label>
+    <div class="lf">
+      <label>Senha de Acesso <span style="font-size:9px;color:rgba(255,255,255,.25);font-weight:400;text-transform:none;letter-spacing:0">— SHA-256</span></label>
       <input type="password" id="lSenha" placeholder="••••••" autocomplete="off" onkeydown="if(event.key==='Enter')doLogin()">
     </div>
-    <button class="login-btn" onclick="doLogin()">Entrar →</button>
-    <div class="login-err" id="loginErr"></div>
-    <div class="login-disclaimer">
+    <button class="lbtn" onclick="doLogin()">Entrar →</button>
+    <div class="lerr" id="loginErr"></div>
+    <div class="ldiscl">
       <strong>⚠ Projeto pessoal — sem vínculo com o TRE-PI</strong><br>
       Desenvolvido por Bernardo Borges Silva · Uso exclusivamente pessoal
     </div>
   </div>
 </div>
 
-<!-- ══ SESSION BAR ══ -->
-<div class="session-bar no-print" id="sessionBar" style="display:none;">
-  <span id="sessionTime"></span>
-  <span style="display:flex;align-items:center;gap:8px;">
-    <span style="color:rgba(255,255,255,.5);">Senha inicial:</span>
-    <input type="number" id="sessionCounterInput" min="1" max="999" value="1"
-      style="width:60px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:4px;padding:2px 8px;color:#fde68a;font-family:'IBM Plex Mono',monospace;font-size:13px;font-weight:700;text-align:center;outline:none;"
-      onchange="aplicarContador()" title="Defina o número inicial do contador">
-    <button onclick="aplicarContador()" style="background:rgba(0,135,61,.4);border:1px solid rgba(0,135,61,.6);color:#86efac;padding:2px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit;">Aplicar</button>
-  </span>
-  <button onclick="encerrarSessao()" style="background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.6);padding:3px 10px;border-radius:4px;cursor:pointer;font-size:11px;font-family:inherit;">Encerrar sessão</button>
+<!-- SESSION BAR -->
+<div class="sbar no-print" id="sbar" style="display:none">
+  <span id="stime"></span>
+  <div class="sbar-group">
+    <span style="color:rgba(255,255,255,.45)">Senha inicial:</span>
+    <input type="number" id="scount" min="1" max="999" value="1" title="Número inicial do contador">
+    <button class="sbar-btn" onclick="aplicarContador()">Aplicar</button>
+  </div>
+  <button class="sbar-enc" onclick="encerrarSessao()">Encerrar sessão</button>
 </div>
 
 <header>
@@ -268,24 +287,27 @@
     <div class="htitle">Fechamento do Cadastro Eleitoral 2026</div>
     <div class="hsub">Port. Conj. nº 9/2026 (alt. nº 13/2026) · Art. 3º, §2º · Atendimento Diferido</div>
   </div>
-  <div class="hbadge"><small>PRÓXIMA</small><span id="headerCounter">001</span></div>
+  <div class="hbadge"><small>PRÓXIMA</small><span id="hcount">001</span></div>
 </header>
 
 <div class="page">
-  <div class="content-grid">
+  <div class="cgrid">
 
+    <!-- FORM -->
     <div>
       <div class="card">
         <div class="card-head"><div class="dot"></div>Cadastro do Eleitor — Emissão de Senha</div>
         <div class="card-body">
-          <div class="alert-box">
-            <strong>⚠ Port. Conj. 13/2026:</strong> Dias <strong>04, 05 e 06/05/2026</strong> até <strong>19h</strong>. Senhas a partir das <strong>13h</strong>. Dados <strong>obrigatórios</strong>.
+
+          <div class="alert">
+            <strong>⚠ Port. Conj. 13/2026:</strong> Dias <strong>04, 05 e 06/05/2026</strong> com funcionamento até <strong>19h</strong>. Senhas distribuídas a partir das <strong>13h</strong>. Dados <strong>obrigatórios</strong>.
           </div>
 
-          <div class="form-row">
+          <!-- ZONA -->
+          <div class="fr">
             <label>Zona / CAE <span class="req">*</span></label>
-            <div class="select-wrap">
-              <select id="fZona" onchange="onZonaChange()">
+            <div class="swrap">
+              <select id="fZona" onchange="onZona()">
                 <option value="">— Selecione a Zona Eleitoral ou CAE —</option>
                 <optgroup label="── Central de Atendimento ao Eleitor (CAE) ──">
                   <option value="CAE|CAMPO MAIOR">CAE — CAMPO MAIOR</option>
@@ -372,415 +394,666 @@
                 </optgroup>
               </select>
             </div>
-            <div class="zone-chip" id="zoneChip">
-              <div class="zone-chip-dot"></div>
-              <span class="zone-chip-text" id="zoneChipText"></span>
+            <div class="zchip" id="zchip"><div class="zchip-dot"></div><span class="zchip-txt" id="zchip-txt"></span></div>
+          </div>
+
+          <!-- DATE CONFIG -->
+          <div class="dcp" id="dcp">
+            <div class="dcp-title">📅 Configuração de Data de Atendimento</div>
+            <label class="dcp-toggle">
+              <input type="checkbox" id="dcpOn" onchange="onDateToggle()">
+              <span>Incluir data prevista de atendimento na senha</span>
+            </label>
+            <div class="dcp-fields" id="dcpFields">
+              <div class="dcp-grid">
+                <div class="dcp-field">
+                  <label>Capacidade por Dia</label>
+                  <input type="number" id="dcpCap" value="20" min="1" max="999" onchange="recalcSlots()">
+                </div>
+                <div class="dcp-field">
+                  <label>Data Inicial</label>
+                  <input type="date" id="dcpStart" value="2026-05-07" min="2026-05-07" max="2026-05-21" onchange="recalcSlots()">
+                </div>
+              </div>
+              <div class="slots-box" id="slotsBox"><em>Configure a capacidade e data inicial acima.</em></div>
             </div>
           </div>
 
-          <div class="form-row">
+          <!-- NOME -->
+          <div class="fr">
             <label>Nome Completo <span class="req">*</span></label>
             <input type="text" id="fNome" placeholder="Nome completo do(a) eleitor(a)" autocomplete="off">
           </div>
 
-          <div class="form-grid-2">
-            <div class="form-row">
-              <label>Título de Eleitor <span style="font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0">(ou documento abaixo)</span></label>
+          <!-- TÍTULO + DATA -->
+          <div class="fg2">
+            <div class="fr">
+              <label>Título de Eleitor <span class="opt">(ou documento abaixo)</span></label>
               <input type="text" id="fTitulo" placeholder="0000 0000 0000" maxlength="14"
-                oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{4})(\d{4})(\d{4})/,'$1 $2 $3')">
+                oninput="this.value=this.value.replace(/\D/g,'').replace(/(\d{4})(\d{4})(\d{4})/,'$1 $2 $3');clearDocErr()">
             </div>
-            <div class="form-row">
+            <div class="fr">
               <label>Data de Emissão</label>
-              <input type="date" id="fData" readonly style="cursor:default;background:#f9fafb;">
+              <input type="date" id="fData" readonly style="cursor:default;background:#f9fafb">
             </div>
           </div>
 
-          <div style="background:#eff6ff;border:1px solid #bfdbfe;border-radius:6px;padding:7px 12px;margin-bottom:10px;font-size:11px;color:#1e40af;line-height:1.4;">
-            <strong>ℹ</strong> Informe o <strong>Título</strong> e/ou o <strong>Documento</strong> — ao menos um é obrigatório (Port. Art. 3º, §2º)
-          </div>
-          <div class="form-row">
-            <label>Documento de Identificação <span style="font-size:9px;color:var(--gray);font-weight:400;text-transform:none;letter-spacing:0">(ou título acima)</span></label>
-            <div class="doc-type-row">
-              <button class="doc-type-btn active" onclick="setDocType('CPF',this)">CPF</button>
-              <button class="doc-type-btn" onclick="setDocType('RG',this)">RG</button>
-              <button class="doc-type-btn" onclick="setDocType('CNH',this)">CNH</button>
-              <button class="doc-type-btn" onclick="setDocType('OUTRO',this)">Outro</button>
+          <!-- DOCUMENTO -->
+          <div class="or-info">ℹ <strong>Título</strong> ou <strong>Documento</strong> — ao menos um obrigatório (Port. Art. 3º, §2º)</div>
+          <div class="fr">
+            <label>Documento de Identificação <span class="opt">(ou título acima)</span></label>
+            <div class="dtrow">
+              <button class="dtbtn on" onclick="setDoc('CPF',this)">CPF</button>
+              <button class="dtbtn" onclick="setDoc('RG',this)">RG</button>
+              <button class="dtbtn" onclick="setDoc('CNH',this)">CNH</button>
+              <button class="dtbtn" onclick="setDoc('OUTRO',this)">Outro</button>
             </div>
-            <input type="text" id="fDoc" placeholder="Número do documento" autocomplete="off">
+            <input type="text" id="fDoc" placeholder="Número do documento" autocomplete="off" oninput="clearDocErr()">
           </div>
-
-          <div class="form-row" id="rowOutro" style="display:none;">
-            <label>Especificar Outro Documento</label>
+          <div class="fr" id="rowOutro" style="display:none">
+            <label>Especificar Outro</label>
             <input type="text" id="fOutro" placeholder="Ex: Passaporte, Carteira Funcional...">
           </div>
 
           <div class="btn-group">
-            <button class="btn btn-primary" onclick="emitirSenha()">✦ Emitir Senha</button>
-            <button class="btn btn-secondary" onclick="limparForm()">Limpar</button>
+            <button class="btn btn-p" onclick="emitir()">✦ Emitir Senha</button>
+            <button class="btn btn-s" onclick="limpar()">Limpar</button>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="preview-panel">
-      <div class="preview-label no-print">Pré-visualização</div>
-      <div class="ticket-preview-wrap">
-        <div class="ticket">
-          <div class="ticket-via via-eleitor">
-            <div class="ticket-header">
-              <div class="ticket-org">Justiça Eleitoral — TRE/PI</div>
-              <div class="ticket-title">Fechamento do Cadastro 2026</div>
-              <div class="ticket-zona" id="pZonaE">—</div>
-              <div><span class="ticket-via-label">VIA DO ELEITOR</span></div>
-            </div>
-            <div class="ticket-num" id="pNumEleitor">—</div>
-            <div class="ticket-field"><span class="lbl">Emissão:</span><span class="val" id="pDataEleitor">—</span></div>
-            <div class="ticket-footer">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. 9/2026 (alt. 13/2026)</div>
+    <!-- PREVIEW -->
+    <div id="previewPanel">
+      <div class="plabel no-print">Pré-visualização</div>
+      <div class="ticket">
+        <div class="tvia">
+          <div class="thead">
+            <div class="torg">Justiça Eleitoral — TRE/PI</div>
+            <div class="ttitle">Fechamento do Cadastro 2026</div>
+            <div class="tzona" id="pZona">—</div>
+            <div><span class="tvlbl">VIA DO ELEITOR</span></div>
           </div>
-          <div class="ticket-cut-line">✂ ─ ─ ─ ─ ─ ─ ─ ─</div>
-          <div class="ticket-via via-cartorio">
-            <div class="ticket-header">
-              <div class="ticket-org">Justiça Eleitoral — TRE/PI</div>
-              <div class="ticket-title">Fechamento do Cadastro 2026</div>
-              <div class="ticket-zona" id="pZonaC">—</div>
-              <div><span class="ticket-via-label">VIA DO CARTÓRIO</span></div>
-            </div>
-            <div class="ticket-num" id="pNumCartorio">—</div>
-            <div class="ticket-field"><span class="lbl">Emissão:</span><span class="val" id="pDataCartorio">—</span></div>
-            <div class="ticket-field"><span class="lbl">Nome:</span><span class="val" id="pNome">—</span></div>
-            <div class="ticket-field"><span class="lbl">Título:</span><span class="val" id="pTitulo">—</span></div>
-            <div class="ticket-field"><span class="lbl">CPF/RG:</span><span class="val" id="pDoc">—</span></div>
-            <div class="ticket-field" id="pDocTipoRow" style="display:none;"><span class="lbl">Tipo:</span><span class="val" id="pDocLbl">—</span></div>
-            <div class="ticket-field" id="pOutroRow" style="display:none;"><span class="lbl">Outro:</span><span class="val" id="pOutro">—</span></div>
-            <div class="ticket-footer">Uso interno — Cartório Eleitoral<br>Conservar para controle do atendimento diferido</div>
+          <div class="tnum" id="pNum">—</div>
+          <div class="tfield"><span class="l">Emissão:</span><span class="v" id="pData">—</span></div>
+          <div class="tfield datend" id="pDateAtendE" style="display:none">
+            <span class="l">Atend.:</span><span class="v" id="pDateAtendEv">—</span>
           </div>
+          <div class="tfoot">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. 9/2026 (alt. 13/2026)</div>
+        </div>
+        <div class="tcut">✂ ─ ─ ─ ─ ─ ─ ─ ─</div>
+        <div class="tvia tc">
+          <div class="thead">
+            <div class="torg">Justiça Eleitoral — TRE/PI</div>
+            <div class="ttitle">Fechamento do Cadastro 2026</div>
+            <div class="tzona" id="pZona2">—</div>
+            <div><span class="tvlbl">VIA DO CARTÓRIO</span></div>
+          </div>
+          <div class="tnum" id="pNum2">—</div>
+          <div class="tfield"><span class="l">Emissão:</span><span class="v" id="pData2">—</span></div>
+          <div class="tfield datend" id="pDateAtendC" style="display:none">
+            <span class="l">Atend.:</span><span class="v" id="pDateAtendCv">—</span>
+          </div>
+          <div class="tfield"><span class="l">Nome:</span><span class="v" id="pNome">—</span></div>
+          <div class="tfield"><span class="l">Título:</span><span class="v" id="pTitulo">—</span></div>
+          <div class="tfield"><span class="l" id="pDocLbl">CPF:</span><span class="v" id="pDoc">—</span></div>
+          <div class="tfield" id="pOutroRow" style="display:none"><span class="l">Outro:</span><span class="v" id="pOutro">—</span></div>
+          <div class="tfoot">Uso interno — Cartório Eleitoral<br>Conservar para controle do atendimento diferido</div>
         </div>
       </div>
-      <div class="no-print" style="margin-top:10px;display:flex;flex-direction:column;gap:8px;">
-        <button class="btn btn-primary" onclick="imprimirTermica()" id="btnImpTermica" disabled style="justify-content:center;">🖨 Imprimir Térmica (última senha)</button>
-        <button class="btn btn-secondary" onclick="reimprimirTermica()" id="btnReimprimir" disabled style="justify-content:center;border-color:#f59e0b;color:#92400e;background:#fffbeb;">↩ Reimprimir Última Senha</button>
-        <label style="display:flex;align-items:center;gap:8px;font-size:12px;color:var(--gray);cursor:pointer;padding:2px 4px;">
-          <input type="checkbox" id="chkAutoPrint" style="width:16px;height:16px;accent-color:var(--green);">
-          Imprimir automaticamente ao emitir
-        </label>
-        <button class="btn btn-secondary" onclick="imprimirA4()" id="btnImpA4" disabled style="justify-content:center;">📄 Imprimir 4 Senhas em A4</button>
+      <div class="no-print" style="margin-top:10px;display:flex;flex-direction:column;gap:8px">
+        <button class="btn btn-p" onclick="impTermica()" id="btnT" disabled style="justify-content:center">🖨 Imprimir Térmica (80mm)</button>
+        <button class="btn btn-s" onclick="reimprimir()" id="btnR" disabled style="justify-content:center">↺ Reimprimir Última Senha</button>
+        <button class="btn btn-s" onclick="impA4()" id="btnA4" disabled style="justify-content:center">📄 4 Senhas em A4 (paisagem)</button>
       </div>
     </div>
 
-  </div>
+  </div><!-- /cgrid -->
 
-  <div class="log-section">
+  <!-- LOG -->
+  <div class="log-sect">
     <div class="card">
       <div class="card-head"><div class="dot"></div>Registro de Senhas Emitidas — Sessão Atual</div>
-      <div class="card-body" style="padding:16px 20px;">
-        <div class="table-actions">
-          <span class="counter-badge" id="totalBadge">0 senhas emitidas</span>
-          <div class="table-btns">
-            <button class="btn btn-secondary no-print" onclick="imprimirRelacao()" id="btnRelacao" disabled style="font-size:12px;padding:6px 14px;">📋 Relação</button>
-            <button class="btn btn-secondary no-print" onclick="exportarCSV()" style="font-size:12px;padding:6px 14px;">↓ CSV</button>
+      <div class="card-body" style="padding:16px 20px">
+        <div class="tbl-actions">
+          <span class="cbadge" id="badge">0 senhas emitidas</span>
+          <div class="tbl-btns">
+            <button class="tbl-btn" onclick="impRelacao()" id="btnRel" disabled>📋 Relação</button>
+            <button class="tbl-btn" onclick="exportCSV()">↓ Exportar CSV</button>
+            <label class="import-lbl" title="Importar sessão anterior">
+              ↑ Importar CSV
+              <input type="file" accept=".csv" onchange="importCSV(event)" style="display:none">
+            </label>
           </div>
         </div>
-        <div class="log-table-wrap">
+        <div class="log-wrap">
           <table>
-            <thead><tr><th>Nº</th><th>Horário</th><th>Nome</th><th>Zona / CAE</th><th>Município</th><th>Título</th><th>Documento</th><th>Emissão</th></tr></thead>
-            <tbody id="logBody"><tr class="empty-row"><td colspan="8">Nenhuma senha emitida nesta sessão</td></tr></tbody>
+            <thead><tr>
+              <th>Nº</th><th>Horário</th><th>Nome</th>
+              <th>Zona / CAE</th><th>Município</th>
+              <th>Título</th><th>Documento</th>
+              <th>Emissão</th><th>Atend. Previsto</th>
+            </tr></thead>
+            <tbody id="logBody">
+              <tr class="empty"><td colspan="9">Nenhuma senha emitida nesta sessão</td></tr>
+            </tbody>
           </table>
         </div>
       </div>
     </div>
   </div>
-</div>
 
-<!-- DISCLAIMER FOOTER -->
-<footer class="no-print" style="
-  background:#1a1a2e; color:rgba(255,255,255,0.55);
-  text-align:center; padding:14px 24px; font-size:11px;
-  line-height:1.6; border-top:3px solid #00873d;
-  font-family:'IBM Plex Sans',sans-serif;
-">
-  <div style="margin-bottom:6px;">
-    <span style="color:#fbbf24;font-weight:700;font-size:12px;">⚠ AVISO — PROJETO DE USO PESSOAL</span>
-  </div>
-  <div style="max-width:720px;margin:0 auto;line-height:1.8;">
-    Este sistema foi desenvolvido por
-    <strong style="color:rgba(255,255,255,.85);">Bernardo Borges Silva</strong>
+</div><!-- /page -->
+
+<!-- THERMAL PRINT AREA -->
+<div class="thermal-area" id="thermalArea"></div>
+
+<!-- A4 PRINT AREA -->
+<div class="a4-sheet" id="a4Sheet"><div class="a4-grid" id="a4Grid"></div></div>
+
+<!-- RELAÇÃO PRINT -->
+<div class="rel-print" id="relPrint"></div>
+
+<footer class="no-print">
+  <span class="ft">⚠ AVISO — PROJETO DE USO PESSOAL</span>
+  <div style="max-width:700px;margin:0 auto">
+    Desenvolvido por <strong style="color:rgba(255,255,255,.85)">Bernardo Borges Silva</strong>
     como ferramenta de uso estritamente pessoal para auxiliar nas atividades do período de fechamento do cadastro eleitoral 2026.
-    <br>
-    <strong style="color:rgba(255,255,255,.75);">Este aplicativo não possui qualquer vínculo, aprovação, patrocínio ou relação oficial
-    com o Tribunal Regional Eleitoral do Piauí (TRE-PI)</strong>,
-    com o Tribunal Superior Eleitoral (TSE) ou com qualquer órgão público.
-    As informações sobre zonas eleitorais utilizadas são de domínio público.
-    Os dados inseridos durante o uso <strong style="color:rgba(255,255,255,.75);">não são transmitidos a nenhum servidor</strong> —
-    permanecem exclusivamente na memória local do navegador e são descartados ao encerrar a sessão.
-    <br>
-    Desenvolvido com o auxílio do <span style="color:#a78bfa;font-weight:600;">Claude — Anthropic</span> &nbsp;✦
+    <strong style="color:rgba(255,255,255,.75)">Este aplicativo não possui qualquer vínculo, aprovação, patrocínio ou relação oficial
+    com o TRE-PI, o TSE ou qualquer órgão público.</strong>
+    Os dados inseridos não são transmitidos a nenhum servidor — permanecem exclusivamente na memória local do navegador
+    e são descartados ao encerrar a sessão.
+    · Desenvolvido com o auxílio do <span style="color:#a78bfa;font-weight:600">Claude — Anthropic</span> ✦
   </div>
 </footer>
 
-<div class="a4-sheet" id="a4Sheet"><div class="a4-grid" id="a4Grid"></div></div>
-<div class="relacao-print" id="relacaoPrint"></div>
-<div class="thermal-area" id="thermalArea"></div>
 <div class="toast" id="toast"></div>
 
 <script>
-/* ══ CONFIG ══ */
-// Senha protegida por SHA-256. Para trocar a senha, substitua o hash abaixo.
-// Gere um novo hash em: https://emn178.github.io/online-tools/sha256.html
-const ACCESS_HASH = 'a01ef541fe2f6b26d48bab7b05ff08124ddbed6632bc8f9b3ce4cdbb2d2681f5';
+/* ════════ CONFIG ════════ */
+const ACCESS_HASH='a01ef541fe2f6b26d48bab7b05ff08124ddbed6632bc8f9b3ce4cdbb2d2681f5';
+// Senha: azulona3
+// Para trocar: https://emn178.github.io/online-tools/sha256.html
 
-async function hashSenha(str){
-  const buf = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(str));
+/* ════════ STATE ════════ */
+let counter=1, logData=[], docType='CPF', zona=null, lastSenha=null;
+let dcfg={on:false, cap:20, start:'2026-05-07'};
+let dcnt={};
+
+const today=new Date().toISOString().split('T')[0];
+document.getElementById('fData').value=today;
+
+/* ════════ WORKING DAYS 07/05–21/05/2026 ════════ */
+const WDAYS=(()=>{
+  const d=[], end=new Date('2026-05-21');
+  let c=new Date('2026-05-07');
+  while(c<=end){const w=c.getDay();if(w&&w<6)d.push(c.toISOString().split('T')[0]);c.setDate(c.getDate()+1);}
+  return d;
+})();
+const DNAMES=['domingo','segunda-feira','terça-feira','quarta-feira','quinta-feira','sexta-feira','sábado'];
+
+/* ════════ UTILS ════════ */
+function pad(n){return String(n).padStart(3,'0')}
+function fd(s){if(!s)return'—';const[y,m,d]=s.split('-');return`${d}/${m}/${y}`}
+function fdf(s){if(!s)return'—';const[y,m,d]=s.split('-');const dt=new Date(s+'T12:00:00');return`${d}/${m}/${y} (${DNAMES[dt.getDay()]})`}
+function nowt(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
+function toast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('on');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('on'),3000)}
+
+/* ════════ HASH ════════ */
+async function hashStr(s){
+  const buf=await crypto.subtle.digest('SHA-256',new TextEncoder().encode(s));
   return Array.from(new Uint8Array(buf)).map(b=>b.toString(16).padStart(2,'0')).join('');
 }
 
-/* ══ STATE ══ */
-let counter=1,logData=[],currentDocType='CPF',selectedZona=null,lastSenha=null;
-const todayStr=new Date().toISOString().split('T')[0];
-document.getElementById('fData').value=todayStr;
+/* ════════ LOGIN ════════ */
+async function doLogin(){
+  const s=document.getElementById('lSenha').value;
+  const err=document.getElementById('loginErr');
+  const btn=document.querySelector('.lbtn');
+  document.getElementById('lSenha').classList.remove('le');
+  err.classList.remove('show');
+  if(!s){document.getElementById('lSenha').classList.add('le');err.textContent='Informe a senha.';err.classList.add('show');return;}
+  btn.textContent='Verificando...';btn.disabled=true;
+  const h=await hashStr(s);
+  btn.textContent='Entrar →';btn.disabled=false;
+  if(h!==ACCESS_HASH){
+    document.getElementById('lSenha').classList.add('le');
+    document.getElementById('lSenha').value='';
+    err.textContent='Senha incorreta.';err.classList.add('show');return;
+  }
+  document.getElementById('loginScreen').style.display='none';
+  document.getElementById('sbar').style.display='flex';
+  startClock();updatePreview();
+}
 
-/* ══ SESSION CLOCK ══ */
 function startClock(){
   setInterval(()=>{
-    const now=new Date();
-    document.getElementById('sessionTime').textContent=
-      now.toLocaleDateString('pt-BR')+' '+now.toLocaleTimeString('pt-BR');
+    document.getElementById('stime').textContent=
+      new Date().toLocaleDateString('pt-BR')+' '+new Date().toLocaleTimeString('pt-BR');
   },1000);
 }
 
-/* ══ LOGIN ══ */
-async function doLogin(){
-  const senha=document.getElementById('lSenha').value;
-  const err=document.getElementById('loginErr');
-  const btn=document.querySelector('.login-btn');
-
-  document.getElementById('lSenha').classList.remove('lerror');
-  err.classList.remove('show');
-
-  if(!senha){
-    document.getElementById('lSenha').classList.add('lerror');
-    err.textContent='Informe a senha de acesso.';
-    err.classList.add('show');
-    return;
-  }
-
-  btn.textContent='Verificando...';
-  btn.disabled=true;
-
-  const hash=await hashSenha(senha);
-
-  btn.textContent='Entrar →';
-  btn.disabled=false;
-
-  if(hash!==ACCESS_HASH){
-    document.getElementById('lSenha').classList.add('lerror');
-    document.getElementById('lSenha').value='';
-    err.textContent='Senha incorreta.';
-    err.classList.add('show');
-    return;
-  }
-
-  document.getElementById('loginScreen').style.display='none';
-  document.getElementById('sessionBar').style.display='flex';
-  startClock();
-  updatePreview();
-}
-
 function aplicarContador(){
-  if(logData.length>0){
-    if(!confirm('Já há '+logData.length+' senha(s) emitida(s). Alterar o contador agora pode gerar numeração duplicada. Confirma?'))return;
-  }
-  const val=parseInt(document.getElementById('sessionCounterInput').value)||1;
-  counter=Math.max(1,Math.min(999,val));
-  document.getElementById('headerCounter').textContent=pad(counter);
+  if(logData.length&&!confirm('Já há '+logData.length+' senha(s) emitida(s). Confirma alterar o contador?'))return;
+  const v=parseInt(document.getElementById('scount').value)||1;
+  counter=Math.max(1,Math.min(999,v));
+  document.getElementById('hcount').textContent=pad(counter);
   updatePreview();
-  showToast('✓ Contador definido em '+pad(counter));
+  toast('✓ Contador definido em '+pad(counter));
 }
 
 function encerrarSessao(){
-  if(logData.length>0&&!confirm('Há '+logData.length+' senha(s) emitida(s) nesta sessão. Deseja realmente encerrar? Os dados serão perdidos.'))return;
+  if(logData.length&&!confirm('Há '+logData.length+' senha(s) nesta sessão. Deseja realmente encerrar?'))return;
   location.reload();
 }
 
-function pad(n){return String(n).padStart(3,'0')}
-function fmtDate(s){if(!s)return'—';const[y,m,d]=s.split('-');return`${d}/${m}/${y}`}
-function nowTime(){return new Date().toLocaleTimeString('pt-BR',{hour:'2-digit',minute:'2-digit',second:'2-digit'})}
-function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(t._t);t._t=setTimeout(()=>t.classList.remove('show'),3000)}
-
-function onZonaChange(){
+/* ════════ ZONA ════════ */
+function onZona(){
   const sel=document.getElementById('fZona');
-  sel.classList.remove('error');
-  if(!sel.value){selectedZona=null;document.getElementById('zoneChip').classList.remove('visible');updatePreview();return}
-  const[zona,cidade]=sel.value.split('|');
-  selectedZona={zona,cidade};
-  document.getElementById('zoneChipText').textContent=`${zona} — ${cidade}`;
-  document.getElementById('zoneChip').classList.add('visible');
+  sel.classList.remove('err');
+  if(!sel.value){
+    zona=null;
+    document.getElementById('zchip').classList.remove('on');
+    document.getElementById('dcp').classList.remove('on');
+    updatePreview();return;
+  }
+  const[z,c]=sel.value.split('|');
+  zona={z,c};
+  document.getElementById('zchip-txt').textContent=`${z} — ${c}`;
+  document.getElementById('zchip').classList.add('on');
+  document.getElementById('dcp').classList.add('on');
+  recalcSlots();updatePreview();
+}
+
+/* ════════ DATE CONFIG ════════ */
+function onDateToggle(){
+  dcfg.on=document.getElementById('dcpOn').checked;
+  document.getElementById('dcpFields').classList.toggle('on',dcfg.on);
+  if(dcfg.on)recalcSlots();
   updatePreview();
 }
 
-function setDocType(tipo,btn){
-  currentDocType=tipo;
-  document.querySelectorAll('.doc-type-btn').forEach(b=>b.classList.remove('active'));
-  btn.classList.add('active');
-  document.getElementById('fDoc').placeholder=tipo==='CPF'?'000.000.000-00':tipo==='RG'?'Ex: 1234567 SSP/PI':tipo==='CNH'?'Número da CNH':'Número do documento';
+function recalcSlots(){
+  dcfg.cap=parseInt(document.getElementById('dcpCap').value)||20;
+  dcfg.start=document.getElementById('dcpStart').value||'2026-05-07';
+  const avail=WDAYS.filter(d=>d>=dcfg.start);
+  const box=document.getElementById('slotsBox');
+  if(!avail.length){box.innerHTML='<span style="color:var(--red)">Nenhum dia útil disponível.</span>';return;}
+  const tot=avail.length*dcfg.cap;
+  const used=Object.values(dcnt).reduce((a,b)=>a+b,0);
+  let h=`<strong>Dias úteis: ${avail.length} &nbsp;|&nbsp; Vagas totais: ${tot} &nbsp;|&nbsp; Usadas: ${used}</strong><br><br>`;
+  avail.forEach(d=>{
+    const u=dcnt[d]||0,r=dcfg.cap-u;
+    const dt=new Date(d+'T12:00:00');
+    const lbl=`${d.split('-').reverse().join('/')} (${DNAMES[dt.getDay()]})`;
+    const cls=r<=0?'slot-full':'slot-ok';
+    const txt=r<=0?'LOTADO':`${u}/${dcfg.cap}`;
+    h+=`<div class="slot-row"><span>${lbl}</span><span class="${cls}">${txt}</span></div>`;
+  });
+  box.innerHTML=h;
+}
+
+function getNextDate(){
+  const avail=WDAYS.filter(d=>d>=dcfg.start);
+  for(const d of avail){if((dcnt[d]||0)<dcfg.cap)return d;}
+  return null;
+}
+
+function assignDate(){
+  const d=getNextDate();
+  if(!d)return null;
+  dcnt[d]=(dcnt[d]||0)+1;
+  recalcSlots();
+  return d;
+}
+
+/* ════════ DOC TYPE ════════ */
+function setDoc(tipo,btn){
+  docType=tipo;
+  document.querySelectorAll('.dtbtn').forEach(b=>b.classList.remove('on'));
+  btn.classList.add('on');
+  document.getElementById('fDoc').placeholder=
+    tipo==='CPF'?'000.000.000-00':tipo==='RG'?'Ex: 1234567 SSP/PI':tipo==='CNH'?'Número da CNH':'Número do documento';
   document.getElementById('rowOutro').style.display=tipo==='OUTRO'?'':'none';
   updatePreview();
 }
 
+function clearDocErr(){
+  const t=document.getElementById('fTitulo').value.trim();
+  const d=document.getElementById('fDoc').value.trim();
+  if(t||d){
+    document.getElementById('fTitulo').classList.remove('err');
+    document.getElementById('fDoc').classList.remove('err');
+  }
+}
+
+/* ════════ PREVIEW ════════ */
 function updatePreview(){
-  const z=selectedZona?`${selectedZona.zona} — ${selectedZona.cidade}`:'—';
+  const z=zona?`${zona.z} — ${zona.c}`:'—';
   const nome=(document.getElementById('fNome').value.trim()||'—').toUpperCase();
   const titulo=document.getElementById('fTitulo').value.trim()||'—';
   const doc=document.getElementById('fDoc').value.trim()||'—';
-  const data=fmtDate(document.getElementById('fData').value)||fmtDate(todayStr);
+  const data=fd(document.getElementById('fData').value)||fd(today);
   const outro=document.getElementById('fOutro').value.trim()||'—';
   const num=pad(counter);
-  document.getElementById('pNumEleitor').textContent=num;
-  document.getElementById('pNumCartorio').textContent=num;
-  document.getElementById('pDataEleitor').textContent=data;
-  document.getElementById('pDataCartorio').textContent=data;
-  document.getElementById('pZonaE').textContent=z;
-  document.getElementById('pZonaC').textContent=z;
+  const nextD=dcfg.on?getNextDate():null;
+
+  ['pZona','pZona2'].forEach(id=>document.getElementById(id).textContent=z);
+  ['pNum','pNum2'].forEach(id=>document.getElementById(id).textContent=num);
+  ['pData','pData2'].forEach(id=>document.getElementById(id).textContent=data);
   document.getElementById('pNome').textContent=nome;
   document.getElementById('pTitulo').textContent=titulo;
-  // For CPF/RG show inline; for CNH/OUTRO show type row
-  const isCpfRg = currentDocType==='CPF'||currentDocType==='RG';
+  document.getElementById('pDocLbl').textContent=docType+':';
   document.getElementById('pDoc').textContent=doc;
-  document.getElementById('pDocTipoRow').style.display=isCpfRg?'none':'';
-  document.getElementById('pDocLbl').textContent=currentDocType;
-  document.getElementById('headerCounter').textContent=num;
-  document.getElementById('pOutroRow').style.display=currentDocType==='OUTRO'?'':'none';
+  document.getElementById('hcount').textContent=num;
+  document.getElementById('pOutroRow').style.display=docType==='OUTRO'?'':'none';
   document.getElementById('pOutro').textContent=outro;
+
+  const showDate=dcfg.on&&nextD;
+  document.getElementById('pDateAtendE').style.display=showDate?'':'none';
+  document.getElementById('pDateAtendC').style.display=showDate?'':'none';
+  if(showDate){
+    const df=fdf(nextD);
+    document.getElementById('pDateAtendEv').textContent=df;
+    document.getElementById('pDateAtendCv').textContent=df;
+  }
 }
 
-['fNome','fTitulo','fDoc','fData','fOutro'].forEach(id=>document.getElementById(id).addEventListener('input',updatePreview));
-// Clear cross-field errors when user types in título or doc
-['fTitulo','fDoc'].forEach(id=>document.getElementById(id).addEventListener('input',function(){
-  if(document.getElementById('fTitulo').value.trim()||document.getElementById('fDoc').value.trim()){
-    document.getElementById('fTitulo').classList.remove('error');
-    document.getElementById('fDoc').classList.remove('error');
-  }
-}));
+['fNome','fTitulo','fDoc','fData','fOutro'].forEach(id=>
+  document.getElementById(id).addEventListener('input',updatePreview)
+);
 
-function emitirSenha(){
-  const zonaSel=document.getElementById('fZona');
+/* ════════ EMITIR ════════ */
+function emitir(){
+  const sel=document.getElementById('fZona');
   const nome=document.getElementById('fNome').value.trim();
   const doc=document.getElementById('fDoc').value.trim();
-  let ok=true;
-  if(!selectedZona){zonaSel.classList.add('error');showToast('⚠ Selecione a Zona ou CAE');ok=false}
-  if(!nome){document.getElementById('fNome').classList.add('error');ok=false}
   const titulo=document.getElementById('fTitulo').value.trim();
+  let ok=true;
+  if(!zona){sel.classList.add('err');toast('⚠ Selecione a Zona ou CAE');ok=false;}
+  if(!nome){document.getElementById('fNome').classList.add('err');ok=false;}
   if(!titulo&&!doc){
-    document.getElementById('fDoc').classList.add('error');
-    document.getElementById('fTitulo').classList.add('error');
-    showToast('⚠ Informe o Título e/ou um Documento de Identificação');
-    ok=false;
+    document.getElementById('fTitulo').classList.add('err');
+    document.getElementById('fDoc').classList.add('err');
+    toast('⚠ Informe o Título e/ou um Documento');ok=false;
   }
   if(!ok)return;
-  const senha={num:pad(counter),nome:nome.toUpperCase(),zona:selectedZona.zona,municipio:selectedZona.cidade,titulo:document.getElementById('fTitulo').value.trim(),doc,tipo:currentDocType,outro:document.getElementById('fOutro').value.trim(),data:document.getElementById('fData').value,horario:nowTime()};
-  lastSenha=senha;
-  logData.push(senha);renderLog();buildA4Sheet();
-  buildThermalArea(senha);
-  document.getElementById('btnImpTermica').disabled=false;
-  document.getElementById('btnReimprimir').disabled=false;
-  document.getElementById('btnImpA4').disabled=false;
-  document.getElementById('btnRelacao').disabled=false;
+
+  let dataAtend=null;
+  if(dcfg.on){
+    dataAtend=assignDate();
+    if(!dataAtend){toast('⚠ Todas as vagas do período estão preenchidas!');return;}
+  }
+
+  const s={
+    num:pad(counter),nome:nome.toUpperCase(),
+    zona:zona.z,mun:zona.c,
+    titulo,doc,tipo:docType,
+    outro:document.getElementById('fOutro').value.trim(),
+    data:document.getElementById('fData').value,
+    horario:nowt(),dataAtend
+  };
+  lastSenha=s;
+  logData.push(s);
+  renderLog();buildA4();buildThermal(s);
+
+  document.getElementById('btnT').disabled=false;
+  document.getElementById('btnR').disabled=false;
+  document.getElementById('btnA4').disabled=false;
+  document.getElementById('btnRel').disabled=false;
+
   counter++;
-  ['fNome','fTitulo','fDoc','fOutro'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList.remove('error')});
+  // Clear voter fields, keep zone
+  ['fNome','fTitulo','fDoc','fOutro'].forEach(id=>{
+    document.getElementById(id).value='';
+    document.getElementById(id).classList.remove('err');
+  });
   document.getElementById('rowOutro').style.display='none';
-  document.querySelectorAll('.doc-type-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
-  currentDocType='CPF';document.getElementById('fDoc').placeholder='000.000.000-00';
-  document.getElementById('fNome').focus();updatePreview();
-  showToast(`✓ Senha ${senha.num} emitida — ${senha.zona}`);
-  if(document.getElementById('chkAutoPrint').checked){setTimeout(()=>imprimirTermica(),200);};
+  document.querySelectorAll('.dtbtn').forEach((b,i)=>b.classList.toggle('on',i===0));
+  docType='CPF';document.getElementById('fDoc').placeholder='000.000.000-00';
+  document.getElementById('fNome').focus();
+  updatePreview();
+  toast(`✓ Senha ${s.num} emitida — ${s.zona}`);
 }
 
+/* ════════ RENDER LOG ════════ */
 function renderLog(){
-  document.getElementById('totalBadge').textContent=logData.length+(logData.length===1?' senha emitida':' senhas emitidas');
-  document.getElementById('logBody').innerHTML=[...logData].reverse().map(s=>`<tr><td>${s.num}</td><td>${s.horario}</td><td>${s.nome}</td><td>${s.zona}</td><td>${s.municipio}</td><td>${s.titulo||'—'}</td><td>${s.tipo}: ${s.doc}${s.tipo==='OUTRO'&&s.outro?' ('+s.outro+')':''}</td><td>${fmtDate(s.data)}</td></tr>`).join('');
+  document.getElementById('badge').textContent=logData.length+(logData.length===1?' senha emitida':' senhas emitidas');
+  document.getElementById('logBody').innerHTML=[...logData].reverse().map(s=>`
+    <tr>
+      <td>${s.num}</td><td>${s.horario}</td><td>${s.nome}</td>
+      <td>${s.zona}</td><td>${s.mun}</td><td>${s.titulo||'—'}</td>
+      <td>${s.tipo}: ${s.doc}${s.tipo==='OUTRO'&&s.outro?' ('+s.outro+')':''}</td>
+      <td>${fd(s.data)}</td>
+      <td style="color:var(--green);font-weight:600">${s.dataAtend?fdf(s.dataAtend):'—'}</td>
+    </tr>`).join('');
 }
 
-function viaHTML(s,via){
-  const z=`${s.zona} — ${s.municipio}`;
-  const ol=s.tipo==='OUTRO'&&s.outro?`<div class="t-field"><span class="l">Outro:</span><span class="v">${s.outro}</span></div>`:'';
-  const isC=via==='cartorio';
-  return`<div class="t-head"><div class="t-org">Justiça Eleitoral — TRE/PI</div><div class="t-title">Fechamento do Cadastro 2026</div><div class="t-zona">${z}</div><span class="t-via-lbl">${isC?'VIA DO CARTÓRIO':'VIA DO ELEITOR'}</span></div><div class="t-num">${s.num}</div><div class="t-field"><span class="l">Emissão:</span><span class="v">${fmtDate(s.data)}</span></div>${isC?`<div class="t-field"><span class="l">Nome:</span><span class="v">${s.nome}</span></div><div class="t-field"><span class="l">Título:</span><span class="v">${s.titulo||'—'}</span></div><div class="t-field"><span class="l">${s.tipo}:</span><span class="v">${s.doc}</span></div>${ol}<div class="t-foot">Uso interno — Cartório Eleitoral<br>Conservar para controle do atendimento diferido</div>`:`<div class="t-foot">Guarde esta senha para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. 9/2026 (alt. 13/2026)</div>`}`;
-}
-
-function buildA4Sheet(){
-  const grid=document.getElementById('a4Grid');grid.innerHTML='';
-  logData.forEach(s=>{const cell=document.createElement('div');cell.className='a4-ticket';cell.innerHTML=viaHTML(s,'eleitor')+`<div class="t-cut">✂ ─ ─ ─ ─ ─ ─ ─ ─ ─ ─</div>`+viaHTML(s,'cartorio');grid.appendChild(cell)});
-}
-
-function buildRelacao(){
-  const zona=logData.length?`${logData[0].zona} — ${logData[0].municipio}`:'—';
-  const rows=logData.map(s=>`<tr><td>${s.num}</td><td>${s.horario}</td><td>${s.nome}</td><td>${s.titulo||'—'}</td><td>${s.tipo}: ${s.doc}${s.tipo==='OUTRO'&&s.outro?' ('+s.outro+')':''}</td><td>${fmtDate(s.data)}</td></tr>`).join('');
-  document.getElementById('relacaoPrint').innerHTML=`<div class="rel-header"><h1>Tribunal Regional Eleitoral do Piauí</h1><h2>Fechamento do Cadastro Eleitoral 2026</h2><p>Relação de Eleitores para Atendimento Diferido<br>Art. 3º, §2º — Port. Conj. nº 9/2026 (alt. Port. Conj. nº 13/2026)</p><div class="zona-info">${zona}</div></div><table class="rel-table"><thead><tr><th>Nº</th><th>Horário</th><th>Nome Completo</th><th>Título</th><th>Documento</th><th>Emissão</th></tr></thead><tbody>${rows}</tbody></table><div class="rel-footer"><span>Total: <strong>${logData.length}</strong> senhas</span><span>Gerado em: ${new Date().toLocaleString('pt-BR')}</span></div><div class="rel-sign"><div class="rel-sign-line"><div class="line"></div><div>Responsável pelo Cartório</div></div><div class="rel-sign-line"><div class="line"></div><div>Juiz(a) Eleitoral</div></div></div>`;
-}
-
-function buildThermalArea(s){
-  const z=`${s.zona} — ${s.municipio}`;
-  const docLabel = s.tipo==='CPF'?'CPF:': s.tipo==='RG'?'RG:': s.tipo==='CNH'?'CNH:':'Outro Doc:';
-  const outroLine = s.tipo==='OUTRO'&&s.outro?`<div class="th-field"><span class="th-l">Especif.:</span><span class="th-v">${s.outro}</span></div>`:'';
+/* ════════ THERMAL ════════ */
+function buildThermal(s){
+  const z=`${s.zona} — ${s.mun}`;
+  const outroL=s.tipo==='OUTRO'&&s.outro?`<div class="th-field"><span class="th-l">Especif.:</span><span class="th-v">${s.outro}</span></div>`:'';
+  const dateLineE=s.dataAtend?`<div class="th-field th-datend"><span class="th-l">Atend.:</span><span class="th-v">${fdf(s.dataAtend)}</span></div>`:'';
+  const dateLineC=s.dataAtend?`<div class="th-field th-datend"><span class="th-l">Atend.:</span><span class="th-v">${fdf(s.dataAtend)}</span></div>`:'';
   document.getElementById('thermalArea').innerHTML=`
-    <div class="th-via th-via-eleitor">
-      <div class="th-header">
+    <div class="th-via">
+      <div class="th-head">
         <div class="th-org">JUSTIÇA ELEITORAL — TRE/PI</div>
         <div class="th-title">FECHAMENTO DO CADASTRO 2026</div>
         <div class="th-zona">${z}</div>
-        <span class="th-via-lbl">VIA DO ELEITOR</span>
+        <span class="th-vlbl">VIA DO ELEITOR</span>
       </div>
       <div class="th-num">${s.num}</div>
-      <div class="th-field"><span class="th-l">Data:</span><span class="th-v">${fmtDate(s.data)}</span></div>
-      <div class="th-footer">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3º §2º — Port. Conj. nº 9/2026 (alt. 13/2026)</div>
+      <div class="th-field"><span class="th-l">Emissão:</span><span class="th-v">${fd(s.data)}</span></div>
+      ${dateLineE}
+      <div class="th-foot">Guarde esta senha. Apresente-a no retorno<br>para o atendimento diferido.<br>Art. 3 Par.2 — Port. Conj. 9/2026 (alt. 13/2026)</div>
     </div>
-    <div class="th-cut-line">- - - - - - - - - - - - - - - - - - - -</div>
-    <div class="th-via th-via-cartorio">
-      <div class="th-header">
+    <div class="th-cut">- - - - - - - - - - - - - - - - - - - -</div>
+    <div class="th-via">
+      <div class="th-head">
         <div class="th-org">JUSTIÇA ELEITORAL — TRE/PI</div>
         <div class="th-title">FECHAMENTO DO CADASTRO 2026</div>
         <div class="th-zona">${z}</div>
-        <span class="th-via-lbl">VIA DO CARTÓRIO</span>
+        <span class="th-vlbl">VIA DO CARTÓRIO</span>
       </div>
       <div class="th-num">${s.num}</div>
-      <div class="th-field"><span class="th-l">Data:</span><span class="th-v">${fmtDate(s.data)}</span></div>
+      <div class="th-field"><span class="th-l">Emissão:</span><span class="th-v">${fd(s.data)}</span></div>
+      ${dateLineC}
       <div class="th-field"><span class="th-l">Nome:</span><span class="th-v">${s.nome}</span></div>
-      <div class="th-field"><span class="th-l">Título:</span><span class="th-v">${s.titulo||'NÃO INFORMADO'}</span></div>
-      <div class="th-field"><span class="th-l">${docLabel}</span><span class="th-v">${s.doc}</span></div>
-      ${outroLine}
-      <div class="th-footer">Uso interno — Cartório Eleitoral<br>Port. Conj. nº 9/2026 (alt. Port. Conj. nº 13/2026)</div>
+      <div class="th-field"><span class="th-l">Título:</span><span class="th-v">${s.titulo||'—'}</span></div>
+      <div class="th-field"><span class="th-l">${s.tipo}:</span><span class="th-v">${s.doc}</span></div>
+      ${outroL}
+      <div class="th-foot">Uso interno — Cartório Eleitoral<br>Conservar para controle do atendimento diferido</div>
     </div>`;
 }
-function imprimirTermica(){
-  if(!lastSenha){showToast('⚠ Emita uma senha primeiro');return;}
-  buildThermalArea(lastSenha);
-  document.body.className='print-thermal';
-  setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600)},100);
-}
-function reimprimirTermica(){
-  if(!lastSenha){showToast('Nenhuma senha emitida ainda');return;}
-  imprimirTermica();
-  showToast(`↩ Reimprimindo senha ${lastSenha.num}...`);
-}
-function imprimirA4(){buildA4Sheet();document.body.className='print-a4';setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600)},100)}
-function imprimirRelacao(){if(!logData.length){showToast('Nenhuma senha emitida ainda');return}buildRelacao();document.body.className='print-relacao';setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600)},150)}
 
-function exportarCSV(){
-  if(!logData.length){showToast('Nenhum dado para exportar');return}
-  const h='Nº;Horário;Nome;Zona;Município;Título;Tipo Doc;Documento;Outro;Data Emissão';
-  const rows=logData.map(s=>`${s.num};${s.horario};${s.nome};${s.zona};${s.municipio};${s.titulo};${s.tipo};${s.doc};${s.outro};${fmtDate(s.data)}`);
-  const blob=new Blob(['\uFEFF'+[h,...rows].join('\n')],{type:'text/csv;charset=utf-8'});
-  const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=`senhas_eleitoral_${todayStr}.csv`;a.click();showToast('✓ CSV exportado');
+/* ════════ A4 GRID ════════ */
+function viaA4(s,via){
+  const z=`${s.zona} — ${s.mun}`;
+  const isC=via==='c';
+  const outroL=isC&&s.tipo==='OUTRO'&&s.outro?`<div class="tf"><span class="l">Outro:</span><span class="v">${s.outro}</span></div>`:'';
+  const dateL=s.dataAtend?`<div class="tf da"><span class="l">Atend.:</span><span class="v">${fdf(s.dataAtend)}</span></div>`:'';
+  return `
+    <div class="th"><div class="to">JUSTIÇA ELEITORAL — TRE/PI</div>
+    <div class="tt">FECHAMENTO DO CADASTRO 2026</div>
+    <div class="tz">${z}</div>
+    <span class="tv">${isC?'VIA DO CARTÓRIO':'VIA DO ELEITOR'}</span></div>
+    <div class="tn">${s.num}</div>
+    <div class="tf"><span class="l">Emissão:</span><span class="v">${fd(s.data)}</span></div>
+    ${dateL}
+    ${isC?`<div class="tf"><span class="l">Nome:</span><span class="v">${s.nome}</span></div>
+    <div class="tf"><span class="l">Título:</span><span class="v">${s.titulo||'—'}</span></div>
+    <div class="tf"><span class="l">${s.tipo}:</span><span class="v">${s.doc}</span></div>
+    ${outroL}
+    <div class="tfo">Uso interno — Cartório Eleitoral</div>`
+    :`<div class="tfo">Guarde esta senha para o atendimento diferido.<br>Art.3 §2 — Port.Conj. 9/2026 (alt.13/2026)</div>`}`;
 }
 
-function limparForm(){
-  ['fNome','fTitulo','fDoc','fOutro'].forEach(id=>{document.getElementById(id).value='';document.getElementById(id).classList.remove('error')});
-  document.getElementById('fData').value=todayStr;
-  document.querySelectorAll('.doc-type-btn').forEach((b,i)=>b.classList.toggle('active',i===0));
-  currentDocType='CPF';document.getElementById('fDoc').placeholder='000.000.000-00';
+function buildA4(){
+  const g=document.getElementById('a4Grid');g.innerHTML='';
+  logData.forEach(s=>{
+    const d=document.createElement('div');d.className='a4t';
+    d.innerHTML=viaA4(s,'e')+`<div class="tc">- - - - - - - - - - - -</div>`+viaA4(s,'c');
+    g.appendChild(d);
+  });
+}
+
+/* ════════ RELAÇÃO ════════ */
+function buildRelacao(){
+  const z=logData.length?`${logData[0].zona} — ${logData[0].mun}`:'—';
+  const rows=logData.map(s=>`<tr>
+    <td>${s.num}</td><td>${s.horario}</td><td>${s.nome}</td>
+    <td>${s.titulo||'—'}</td>
+    <td>${s.tipo}: ${s.doc}${s.tipo==='OUTRO'&&s.outro?' ('+s.outro+')':''}</td>
+    <td>${fd(s.data)}</td><td>${s.dataAtend?fdf(s.dataAtend):'—'}</td>
+  </tr>`).join('');
+  document.getElementById('relPrint').innerHTML=`
+    <div class="rel-h">
+      <h1>Tribunal Regional Eleitoral do Piauí</h1>
+      <h2>Fechamento do Cadastro Eleitoral 2026</h2>
+      <p>Relação de Eleitores para Atendimento Diferido<br>
+         Art. 3º, §2º — Port. Conj. nº 9/2026 (alt. Port. Conj. nº 13/2026)</p>
+      <div class="zi">${z}</div>
+    </div>
+    <table class="rel-table">
+      <thead><tr><th>Nº</th><th>Horário</th><th>Nome Completo</th><th>Título</th><th>Documento</th><th>Emissão</th><th>Atend. Previsto</th></tr></thead>
+      <tbody>${rows}</tbody>
+    </table>
+    <div class="rel-foot">
+      <span>Total: <strong>${logData.length}</strong> senhas</span>
+      <span>Gerado em: ${new Date().toLocaleString('pt-BR')}</span>
+    </div>
+    <div class="rel-sign">
+      <div class="rel-sign-line"><div class="line"></div><div>Responsável pelo Cartório</div></div>
+      <div class="rel-sign-line"><div class="line"></div><div>Juiz(a) Eleitoral</div></div>
+    </div>`;
+}
+
+/* ════════ PRINT ════════ */
+function impTermica(){
+  if(!lastSenha){toast('Nenhuma senha emitida ainda');return;}
+  buildThermal(lastSenha);
+  document.body.className='pt';
+  setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600);},100);
+}
+function reimprimir(){
+  if(!lastSenha){toast('Nenhuma senha para reimprimir');return;}
+  buildThermal(lastSenha);
+  document.body.className='pt';
+  setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600);},100);
+}
+function impA4(){
+  buildA4();
+  document.body.className='pa';
+  setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600);},100);
+}
+function impRelacao(){
+  if(!logData.length){toast('Nenhuma senha emitida ainda');return;}
+  buildRelacao();
+  document.body.className='pr';
+  setTimeout(()=>{window.print();setTimeout(()=>document.body.className='',600);},150);
+}
+
+/* ════════ EXPORT CSV ════════ */
+function exportCSV(){
+  if(!logData.length){toast('Nenhum dado para exportar');return;}
+  const meta='#META;counter='+counter
+    +';dcpOn='+dcfg.on+';dcpCap='+dcfg.cap
+    +';dcpStart='+dcfg.start
+    +';dcnt='+encodeURIComponent(JSON.stringify(dcnt));
+  const h='Nr;Horario;Nome;Zona;Municipio;Titulo;TipoDoc;Documento;Outro;DataEmissao;DataAtendimento';
+  const rows=logData.map(s=>[
+    s.num,s.horario,s.nome,s.zona,s.mun,
+    s.titulo||'',s.tipo,s.doc,s.outro||'',
+    fd(s.data),s.dataAtend||''
+  ].join(';'));
+  const blob=new Blob(['\uFEFF'+[meta,h,...rows].join('\n')],{type:'text/csv;charset=utf-8'});
+  const a=document.createElement('a');
+  a.href=URL.createObjectURL(blob);
+  a.download='senhas_'+today+'.csv';
+  a.click();
+  toast('✓ CSV exportado: '+logData.length+' registros');
+}
+
+/* ════════ IMPORT CSV ════════ */
+function importCSV(evt){
+  const file=evt.target.files[0];if(!file)return;
+  if(!confirm('Importar sessão do CSV? Os dados atuais serão substituídos.'))return;
+  const r=new FileReader();
+  r.onload=function(e){
+    try{
+      const lines=e.target.result.replace(/\r/g,'').split('\n').map(l=>l.trim()).filter(l=>l);
+      let metaLine=null,dataLines=[];
+      lines.forEach(l=>{if(l.startsWith('#META'))metaLine=l;else dataLines.push(l);});
+
+      if(metaLine){
+        metaLine.split(';').forEach(p=>{
+          if(p.startsWith('counter='))counter=parseInt(p.split('=')[1])||1;
+          if(p.startsWith('dcpOn='))dcfg.on=p.split('=')[1]==='true';
+          if(p.startsWith('dcpCap='))dcfg.cap=parseInt(p.split('=')[1])||20;
+          if(p.startsWith('dcpStart='))dcfg.start=p.split('=')[1]||'2026-05-07';
+          if(p.startsWith('dcnt=')){try{dcnt=JSON.parse(decodeURIComponent(p.split('=').slice(1).join('=')));}catch(e){dcnt={};}}
+        });
+      }
+
+      logData=[];
+      dataLines.filter(l=>!l.startsWith('Nr')).forEach(l=>{
+        const c=l.split(';');if(c.length<8)return;
+        let da=c[10]||null;
+        if(da){
+          // convert dd/mm/yyyy to yyyy-mm-dd if needed
+          const m=da.match(/^(\d{2})\/(\d{2})\/(\d{4})/);
+          if(m)da=`${m[3]}-${m[2]}-${m[1]}`;
+          // strip day name
+          da=da.split(' ')[0];
+          if(!/^\d{4}-\d{2}-\d{2}$/.test(da))da=null;
+        }
+        logData.push({
+          num:c[0],horario:c[1],nome:c[2],zona:c[3],mun:c[4],
+          titulo:c[5],tipo:c[6],doc:c[7],outro:c[8]||'',
+          data:today,dataAtend:da||null
+        });
+      });
+
+      // Sync date config UI
+      document.getElementById('dcpOn').checked=dcfg.on;
+      document.getElementById('dcpCap').value=dcfg.cap;
+      document.getElementById('dcpStart').value=dcfg.start;
+      document.getElementById('dcpFields').classList.toggle('on',dcfg.on);
+
+      renderLog();buildA4();
+      if(logData.length){
+        document.getElementById('btnT').disabled=false;
+        document.getElementById('btnR').disabled=false;
+        document.getElementById('btnA4').disabled=false;
+        document.getElementById('btnRel').disabled=false;
+      }
+      document.getElementById('hcount').textContent=pad(counter);
+      document.getElementById('scount').value=counter;
+      if(dcfg.on)recalcSlots();
+      updatePreview();
+      toast('✓ Importado: '+logData.length+' registros, próxima senha '+pad(counter));
+    }catch(err){toast('⚠ Erro ao importar: '+err.message);}
+  };
+  r.readAsText(file);
+  evt.target.value='';
+}
+
+/* ════════ LIMPAR ════════ */
+function limpar(){
+  ['fNome','fTitulo','fDoc','fOutro'].forEach(id=>{
+    document.getElementById(id).value='';
+    document.getElementById(id).classList.remove('err');
+  });
+  document.getElementById('fData').value=today;
+  document.querySelectorAll('.dtbtn').forEach((b,i)=>b.classList.toggle('on',i===0));
+  docType='CPF';document.getElementById('fDoc').placeholder='000.000.000-00';
   document.getElementById('rowOutro').style.display='none';
-  document.getElementById('btnImpTermica').disabled=true;document.getElementById('btnImpA4').disabled=true;document.getElementById('btnReimprimir').disabled=true;
+  document.getElementById('btnT').disabled=true;
+  document.getElementById('btnA4').disabled=true;
   updatePreview();
 }
+
 updatePreview();
 </script>
 </body>
